@@ -1,0 +1,5608 @@
+Draft (ABSTRACT)
+- Attributes:
+    - Name: MAX_FAME_SIZE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: INITIAL_FAMESIZE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: FLASH_POLICY_REQUEST
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte[])
+    - Name: role
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: CUSTOM_CLASS (Role)
+    - Name: continuousFrameType
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: CUSTOM_CLASS (Opcode)
+- Operations:
+    - Name: readLine
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: readStringLine
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: translateHandshakeHttp
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: CUSTOM_CLASS (HandshakeBuilder)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - CUSTOM_CLASS (Role)
+    - Name: acceptHandshakeAsClient (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (HandshakeState)
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshake)
+       - CUSTOM_CLASS (ServerHandshake)
+    - Name: acceptHandshakeAsServer (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (HandshakeState)
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshake)
+    - Name: basicAccept
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - CUSTOM_CLASS (Handshakedata)
+    - Name: createBinaryFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: createFrames (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - BASIC_TYPE (Boolean)
+    - Name: createFrames (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: reset (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: createHandshake
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - CUSTOM_CLASS (Handshakedata)
+       - CUSTOM_CLASS (Role)
+    - Name: createHandshake
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - CUSTOM_CLASS (Handshakedata)
+       - CUSTOM_CLASS (Role)
+       - BASIC_TYPE (Boolean)
+    - Name: postProcessHandshakeRequestAsClient (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (ClientHandshakeBuilder)
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshakeBuilder)
+    - Name: postProcessHandshakeResponseAsServer (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (HandshakeBuilder)
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshake)
+       - CUSTOM_CLASS (ServerHandshakeBuilder)
+    - Name: translateFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: getCloseHandshakeType (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (CloseHandshakeType)
+    - Name: copyInstance (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (Draft)
+    - Name: translateHandshake
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (Handshakedata)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: checkAlloc
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: setParseMode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Role)
+    - Name: getRole
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (Role)
+    - Name: continuousFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - CUSTOM_CLASS (Opcode)
+       - INTERNAL_CLASS (ByteBuffer)
+       - BASIC_TYPE (Boolean)
+    - Name: processFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketImpl)
+       - CUSTOM_CLASS (Framedata)
+    - Name: toString
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: readVersion
+      Visibility: PACKAGE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - CUSTOM_CLASS (Handshakedata)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: Role
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Containment
+      With: CloseHandshakeType
+    - Flow: In
+      Type: Containment
+      With: HandshakeState
+    - Flow: In
+      Type: Association
+      With: WebSocketClient
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: In
+      Type: Dependency
+      With: DefaultSSLWebSocketServerFactory
+    - Flow: In
+      Type: Dependency
+      With: DefaultWebSocketServerFactory
+    - Flow: In
+      Type: Association
+      With: WebSocketServer
+      Multiplicity: 
+        - From: 0..*
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServerFactory
+    - Flow: In
+      Type: Dependency
+      With: WebSocket
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: WebSocketFactory
+    - Flow: In
+      Type: Association
+      With: WebSocketImpl
+      Multiplicity: 
+        - From: 1..*
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: Out
+      Type: Dependency
+      With: HandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: InvalidHandshakeException
+    - Flow: Out
+      Type: Dependency
+      With: IncompleteHandshakeException
+    - Flow: Out
+      Type: Dependency
+      With: HandshakeState
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: Out
+      Type: Dependency
+      With: Role
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshake
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: CloseHandshakeType
+    - Flow: Out
+      Type: Dependency
+      With: LimitExedeedException
+    - Flow: Out
+      Type: Dependency
+      With: LimitExedeedException
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: HandshakeImpl1Client
+    - Flow: Out
+      Type: Dependency
+      With: HandshakeImpl1Server
+    - Flow: Out
+      Type: Dependency
+      With: Handshakedata
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshake
+    - Flow: Out
+      Type: Dependency
+      With: Charsetfunctions
+    - Flow: Out
+      Type: Association
+      With: Opcode
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..1
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Generalization
+      With: Draft_6455
+
+HandshakeState (ENUMERATION)
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+CloseHandshakeType (ENUMERATION)
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+IncompleteException (NORMAL)
+- Attributes:
+    - Name: serialVersionUID
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Long)
+    - Name: preferedsize
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: IncompleteException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: getPreferedSize
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+AbstractClientProxyChannel (ABSTRACT)
+- Attributes:
+    - Name: proxyHandshake
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+- Operations:
+    - Name: AbstractClientProxyChannel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (ByteChannel)
+    - Name: write
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: buildHandShake (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: AbstractWrappedByteChannel
+
+WebSocketClient (ABSTRACT)
+- Attributes:
+    - Name: uri
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (URI)
+    - Name: engine
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (WebSocketImpl)
+    - Name: socket
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Socket)
+    - Name: ostream
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (OutputStream)
+    - Name: proxy
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Proxy)
+    - Name: writethread
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Thread)
+    - Name: draft
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (Draft)
+    - Name: headers
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Map)
+    - Name: connectLatch
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (CountDownLatch)
+    - Name: closeLatch
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (CountDownLatch)
+    - Name: connectTimeout
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: connectReadThread
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Thread)
+- Operations:
+    - Name: WebSocketClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (URI)
+    - Name: WebSocketClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (URI)
+       - CUSTOM_CLASS (Draft)
+    - Name: WebSocketClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (URI)
+       - CUSTOM_CLASS (Draft)
+       - INTERNAL_CLASS (Map)
+       - BASIC_TYPE (Int)
+    - Name: setSocket
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Socket)
+    - Name: setProxy
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Proxy)
+    - Name: sendPing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: sendHandshake
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: sendFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: sendFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Collection)
+    - Name: sendFragmentedFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Opcode)
+       - INTERNAL_CLASS (ByteBuffer)
+       - BASIC_TYPE (Boolean)
+    - Name: send
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: send
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: send (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: onWriteDemand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: onWebsocketOpen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Handshakedata)
+    - Name: onWebsocketMessageFragment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+    - Name: onWebsocketMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (String)
+    - Name: onWebsocketMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: onWebsocketError
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (Exception)
+    - Name: onWebsocketClosing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: onWebsocketCloseInitiated
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: onWebsocketClose
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: onOpen (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (ServerHandshake)
+    - Name: onMessage (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: onMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: onFragment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: onError (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Exception)
+    - Name: onClosing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: onCloseInitiated
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: onClose (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: isOpen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isFlushAndClose
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isConnecting
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isClosing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isClosed
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: hasBufferedData (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: handleIOException
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (IOException)
+    - Name: getURI
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (URI)
+    - Name: getSocket
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Socket)
+    - Name: getResourceDescriptor (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getRemoteSocketAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: getRemoteSocketAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+    - Name: getReadyState
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (READYSTATE)
+    - Name: getPort
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: getLocalSocketAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: getLocalSocketAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+    - Name: getDraft
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Draft)
+    - Name: getConnection
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocket)
+    - Name: getConnections (Abstract)
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Collection)
+    - Name: connectBlocking
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: connect
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: closeConnection (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: closeBlocking
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: getAttachment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (T)
+    - Name: closeSocket
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: WebSocketClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (URI)
+       - INTERNAL_CLASS (Map)
+    - Name: WebSocketClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (URI)
+       - INTERNAL_CLASS (Map)
+       - CUSTOM_CLASS (Draft)
+    - Name: reconnect
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: reconnectBlocking
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: reset
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: setAttachment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (T)
+    - Name: connectBlocking
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (Long)
+       - INTERNAL_CLASS (TimeUnit)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: WebSocketImpl
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Containment
+      With: WebsocketWriteThread
+    - Flow: Out
+      Type: Dependency
+      With: WebsocketWriteThread
+    - Flow: In
+      Type: Dependency
+      With: WebsocketWriteThread
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: Out
+      Type: Dependency
+      With: HandshakeImpl1Client
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshake
+    - Flow: Out
+      Type: Dependency
+      With: InvalidHandshakeException
+    - Flow: Out
+      Type: Dependency
+      With: WebSocket
+    - Flow: Out
+      Type: Dependency
+      With: READYSTATE
+    - Flow: Out
+      Type: Association
+      With: Draft
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: Draft
+    - Flow: Out
+      Type: Realization
+      With: WebSocket
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Generalization
+      With: AbstractWebSocket
+    - Flow: Out
+      Type: Dependency
+      With: Draft_6455
+
+WebsocketWriteThread (NORMAL)
+- Operations:
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: WebSocketClient
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketClient
+
+IncompleteHandshakeException (NORMAL)
+- Attributes:
+    - Name: serialVersionUID
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Long)
+    - Name: preferedSize
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: IncompleteHandshakeException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: IncompleteHandshakeException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: getPreferedSize
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: Draft
+
+InvalidDataException (NORMAL)
+- Attributes:
+    - Name: serialVersionUID
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Long)
+    - Name: closecode
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: InvalidDataException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: InvalidDataException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: InvalidDataException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - INTERNAL_CLASS (Throwable)
+    - Name: InvalidDataException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - INTERNAL_CLASS (Throwable)
+    - Name: getCloseCode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+- Relations:
+    - Flow: In
+      Type: Generalization
+      With: InvalidFrameException
+    - Flow: In
+      Type: Generalization
+      With: InvalidHandshakeException
+    - Flow: In
+      Type: Generalization
+      With: LimitExedeedException
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketListener
+    - Flow: In
+      Type: Dependency
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: In
+      Type: Dependency
+      With: Charsetfunctions
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: ControlFrame
+    - Flow: In
+      Type: Dependency
+      With: DataFrame
+    - Flow: In
+      Type: Dependency
+      With: IExtension
+    - Flow: In
+      Type: Dependency
+      With: DefaultExtension
+    - Flow: In
+      Type: Dependency
+      With: CompressionExtension
+    - Flow: In
+      Type: Dependency
+      With: TextFrame
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+InvalidFrameException (NORMAL)
+- Attributes:
+    - Name: serialVersionUID
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Long)
+- Operations:
+    - Name: InvalidFrameException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: InvalidFrameException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: InvalidFrameException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+    - Name: InvalidFrameException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: ControlFrame
+    - Flow: In
+      Type: Dependency
+      With: DefaultExtension
+    - Flow: In
+      Type: Dependency
+      With: CompressionExtension
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+InvalidHandshakeException (NORMAL)
+- Attributes:
+    - Name: serialVersionUID
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Long)
+- Operations:
+    - Name: InvalidHandshakeException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: InvalidHandshakeException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - INTERNAL_CLASS (Throwable)
+    - Name: InvalidHandshakeException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: InvalidHandshakeException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: InvalidDataException
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+LimitExedeedException (NORMAL)
+- Attributes:
+    - Name: serialVersionUID
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Long)
+- Operations:
+    - Name: LimitExedeedException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: LimitExedeedException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+NotSendableException (NORMAL)
+- Attributes:
+    - Name: serialVersionUID
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Long)
+- Operations:
+    - Name: NotSendableException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: NotSendableException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+    - Name: NotSendableException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+WebsocketNotConnectedException (NORMAL)
+- Attributes:
+    - Name: serialVersionUID
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Long)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+
+CloseFrame (NORMAL)
+- Attributes:
+    - Name: NORMAL
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: GOING_AWAY
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: PROTOCOL_ERROR
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: REFUSE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: NOCODE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: ABNORMAL_CLOSE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: NO_UTF8
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: POLICY_VALIDATION
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: TOOBIG
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: EXTENSION
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: UNEXPECTED_CONDITION
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: TLS_ERROR
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: NEVER_CONNECTED
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: BUGGYCLOSE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: FLASHPOLICY
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: code
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: reason
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: SERVICE_RESTAR
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: TRY_AGAIN_LATER
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: BAD_GATEWAY
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: getCloseCode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: getMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: CloseFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: setCode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: setReason
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: toString
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: isValid
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: setPayload
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: updatePayload
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: getPayloadData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: In
+      Type: Dependency
+      With: InvalidFrameException
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: Out
+      Type: Dependency
+      With: InvalidFrameException
+    - Flow: In
+      Type: Dependency
+      With: InvalidHandshakeException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: In
+      Type: Dependency
+      With: LimitExedeedException
+    - Flow: In
+      Type: Dependency
+      With: Charsetfunctions
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: Out
+      Type: Generalization
+      With: ControlFrame
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Dependency
+      With: ByteBufferUtils
+    - Flow: Out
+      Type: Dependency
+      With: Charsetfunctions
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+Framedata (INTERFACE)
+- Operations:
+    - Name: getTransfereMasked (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: append (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: isFin (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: getOpcode (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (Opcode)
+    - Name: getPayloadData (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: isRSV1 (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isRSV2 (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isRSV3 (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+- Relations:
+    - Flow: In
+      Type: Containment
+      With: Opcode
+    - Flow: In
+      Type: Dependency
+      With: WebSocket
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketListener
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: In
+      Type: Realization
+      With: FramedataImpl1
+    - Flow: In
+      Type: Dependency
+      With: IExtension
+    - Flow: In
+      Type: Dependency
+      With: DefaultExtension
+    - Flow: In
+      Type: Dependency
+      With: CompressionExtension
+    - Flow: In
+      Type: Association
+      With: Draft_6455
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+Opcode (ENUMERATION)
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: Framedata
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: In
+      Type: Association
+      With: FramedataImpl1
+      Multiplicity: 
+        - From: 0..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: WebSocket
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: In
+      Type: Association
+      With: Draft
+      Multiplicity: 
+        - From: 0..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: ControlFrame
+    - Flow: In
+      Type: Dependency
+      With: PingFrame
+    - Flow: In
+      Type: Dependency
+      With: PongFrame
+    - Flow: In
+      Type: Dependency
+      With: DataFrame
+    - Flow: In
+      Type: Dependency
+      With: TextFrame
+    - Flow: In
+      Type: Dependency
+      With: ContinuousFrame
+    - Flow: In
+      Type: Dependency
+      With: BinaryFrame
+    - Flow: In
+      Type: Dependency
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+FramedataImpl1 (ABSTRACT)
+- Attributes:
+    - Name: emptyarray
+      Visibility: PROTECTED
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte[])
+    - Name: fin
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: optcode
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Opcode)
+    - Name: unmaskedpayload
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: transferemasked
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: rsv1
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: rsv2
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: rsv3
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+- Operations:
+    - Name: FramedataImpl1
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Opcode)
+    - Name: getOpcode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Opcode)
+    - Name: getTransfereMasked
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: getPayloadData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: setPayload
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: append
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: toString
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: isFin
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: setFin
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: setTransferemasked
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: isValid (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getRsv1
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: setRsv1
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: getRsv2
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: setRsv2
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: getRsv3
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: setRsv3
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: get
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: INTERNAL_CLASS (FramedataImpl1)
+      Parameters: 
+       - CUSTOM_CLASS (Opcode)
+    - Name: equals
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Object)
+    - Name: hashCode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Association
+      With: Opcode
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..1
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: Out
+      Type: Realization
+      With: Framedata
+    - Flow: In
+      Type: Generalization
+      With: ControlFrame
+    - Flow: In
+      Type: Dependency
+      With: ControlFrame
+    - Flow: In
+      Type: Generalization
+      With: DataFrame
+    - Flow: Out
+      Type: Dependency
+      With: PingFrame
+    - Flow: Out
+      Type: Dependency
+      With: PongFrame
+    - Flow: Out
+      Type: Dependency
+      With: TextFrame
+    - Flow: Out
+      Type: Dependency
+      With: BinaryFrame
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: Out
+      Type: Dependency
+      With: ContinuousFrame
+    - Flow: Out
+      Type: Dependency
+      With: ByteBufferUtils
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+ClientHandshake (INTERFACE)
+- Operations:
+    - Name: getResourceDescriptor (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Association
+      With: WebSocketImpl
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Generalization
+      With: ClientHandshakeBuilder
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketListener
+    - Flow: Out
+      Type: Generalization
+      With: Handshakedata
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+ClientHandshakeBuilder (INTERFACE)
+- Operations:
+    - Name: setResourceDescriptor (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: ClientHandshake
+    - Flow: In
+      Type: Realization
+      With: HandshakeImpl1Client
+    - Flow: Out
+      Type: Generalization
+      With: HandshakeBuilder
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+HandshakeBuilder (INTERFACE)
+- Operations:
+    - Name: put (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: setContent (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+- Relations:
+    - Flow: In
+      Type: Generalization
+      With: ClientHandshakeBuilder
+    - Flow: In
+      Type: Realization
+      With: HandshakedataImpl1
+    - Flow: In
+      Type: Generalization
+      With: ServerHandshakeBuilder
+    - Flow: Out
+      Type: Generalization
+      With: Handshakedata
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+Handshakedata (INTERFACE)
+- Operations:
+    - Name: iterateHttpFields (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Iterator)
+    - Name: getFieldValue (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: hasFieldValue (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getContent (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+- Relations:
+    - Flow: In
+      Type: Generalization
+      With: ClientHandshake
+    - Flow: In
+      Type: Generalization
+      With: HandshakeBuilder
+    - Flow: In
+      Type: Generalization
+      With: ServerHandshake
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: WebSocketListener
+    - Flow: In
+      Type: Dependency
+      With: Draft
+
+HandshakedataImpl1 (NORMAL)
+- Attributes:
+    - Name: content
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+    - Name: map
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TreeMap)
+- Operations:
+    - Name: HandshakedataImpl1
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: iterateHttpFields
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Iterator)
+    - Name: getFieldValue
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: put
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: hasFieldValue
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getContent
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+    - Name: setContent
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: HandshakeBuilder
+    - Flow: In
+      Type: Generalization
+      With: HandshakeImpl1Client
+    - Flow: In
+      Type: Generalization
+      With: HandshakeImpl1Server
+
+HandshakeImpl1Client (NORMAL)
+- Attributes:
+    - Name: resourceDescriptor
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+- Operations:
+    - Name: setResourceDescriptor
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getResourceDescriptor
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: ClientHandshakeBuilder
+    - Flow: Out
+      Type: Generalization
+      With: HandshakedataImpl1
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: In
+      Type: Dependency
+      With: Draft
+
+HandshakeImpl1Server (NORMAL)
+- Attributes:
+    - Name: httpstatus
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Short)
+    - Name: httpstatusmessage
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+- Operations:
+    - Name: getHttpStatusMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getHttpStatus
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Short)
+    - Name: setHttpStatusMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: setHttpStatus
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Short)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: HandshakedataImpl1
+    - Flow: Out
+      Type: Realization
+      With: ServerHandshakeBuilder
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: Draft
+
+ServerHandshake (INTERFACE)
+- Operations:
+    - Name: getHttpStatusMessage (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getHttpStatus (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Short)
+- Relations:
+    - Flow: In
+      Type: Generalization
+      With: ServerHandshakeBuilder
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketListener
+    - Flow: Out
+      Type: Generalization
+      With: Handshakedata
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+ServerHandshakeBuilder (INTERFACE)
+- Operations:
+    - Name: setHttpStatus (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Short)
+    - Name: setHttpStatusMessage (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: HandshakeBuilder
+    - Flow: Out
+      Type: Generalization
+      With: ServerHandshake
+    - Flow: In
+      Type: Realization
+      With: HandshakeImpl1Server
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketListener
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+DefaultSSLWebSocketServerFactory (NORMAL)
+- Attributes:
+    - Name: sslcontext
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (SSLContext)
+    - Name: exec
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (ExecutorService)
+- Operations:
+    - Name: DefaultSSLWebSocketServerFactory
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (SSLContext)
+    - Name: DefaultSSLWebSocketServerFactory
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (SSLContext)
+       - INTERNAL_CLASS (ExecutorService)
+    - Name: wrapChannel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteChannel)
+      Parameters: 
+       - INTERNAL_CLASS (SocketChannel)
+       - INTERNAL_CLASS (SelectionKey)
+    - Name: createWebSocket
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocketImpl)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketAdapter)
+       - CUSTOM_CLASS (Draft)
+    - Name: createWebSocket
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocketImpl)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketAdapter)
+       - INTERNAL_CLASS (List)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: WebSocketServerFactory
+    - Flow: Out
+      Type: Dependency
+      With: SSLSocketChannel2
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: Out
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Generalization
+      With: CustomSSLWebSocketServerFactory
+
+DefaultWebSocketServerFactory (NORMAL)
+- Operations:
+    - Name: createWebSocket
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocketImpl)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketAdapter)
+       - CUSTOM_CLASS (Draft)
+    - Name: createWebSocket
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocketImpl)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketAdapter)
+       - INTERNAL_CLASS (List)
+    - Name: wrapChannel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (SocketChannel)
+      Parameters: 
+       - INTERNAL_CLASS (SocketChannel)
+       - INTERNAL_CLASS (SelectionKey)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: WebSocketServerFactory
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: Out
+      Type: Dependency
+      With: Draft
+
+WebSocketServer (ABSTRACT)
+- Attributes:
+    - Name: DECODERS
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: address
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (InetSocketAddress)
+    - Name: server
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ServerSocketChannel)
+    - Name: selector
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Selector)
+    - Name: drafts
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+    - Name: selectorthread
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Thread)
+    - Name: isclosed
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (AtomicBoolean)
+    - Name: buffers
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (BlockingQueue)
+    - Name: queueinvokes
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: queuesize
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (AtomicInteger)
+    - Name: connections
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Collection)
+    - Name: decoders
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+    - Name: iqueue
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+    - Name: wsf
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (WebSocketServerFactory)
+- Operations:
+    - Name: WebSocketServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: WebSocketServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (InetSocketAddress)
+    - Name: WebSocketServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (InetSocketAddress)
+       - BASIC_TYPE (Int)
+    - Name: WebSocketServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (InetSocketAddress)
+       - INTERNAL_CLASS (List)
+    - Name: WebSocketServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (InetSocketAddress)
+       - BASIC_TYPE (Int)
+       - INTERNAL_CLASS (List)
+    - Name: WebSocketServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (InetSocketAddress)
+       - BASIC_TYPE (Int)
+       - INTERNAL_CLASS (List)
+       - INTERNAL_CLASS (Collection)
+    - Name: start
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: stop
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: stop
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: connections
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Collection)
+    - Name: getPort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: getDraft
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: allocateBuffers
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: releaseBuffers
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: createBuffer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: queue
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketImpl)
+    - Name: takeBuffer
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: pushBuffer
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: handleIOException
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (SelectionKey)
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (IOException)
+    - Name: handleFatal
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (Exception)
+    - Name: onWebsocketMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (String)
+    - Name: onWebsocketMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: onWebsocketOpen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Handshakedata)
+    - Name: onWebsocketClose
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: removeConnection
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: addConnection
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: onWebsocketError
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (Exception)
+    - Name: onWriteDemand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: onWebsocketCloseInitiated
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: onWebsocketClosing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: onCloseInitiated
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: onClosing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: setWebSocketFactory
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketServerFactory)
+    - Name: getWebSocketFactory
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocketFactory)
+    - Name: onConnect
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (SelectionKey)
+    - Name: getSocket
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Socket)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: getLocalSocketAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: getRemoteSocketAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: onOpen (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (ClientHandshake)
+    - Name: onClose (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: onMessage (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (String)
+    - Name: onError (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (Exception)
+    - Name: onMessage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: getAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+    - Name: onWebsocketMessageFragment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+    - Name: onFragment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+    - Name: onWebsocketHandshakeReceiveAsServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (ServerHandshakeBuilder)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Draft)
+       - CUSTOM_CLASS (ClientHandshake)
+    - Name: onStart (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: broadcast
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: broadcast
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: broadcast
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - INTERNAL_CLASS (Collection)
+    - Name: broadcast
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - INTERNAL_CLASS (Collection)
+    - Name: getConnections
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Collection)
+    - Name: broadcast
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: broadcast
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - INTERNAL_CLASS (Collection)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: WebSocketServerFactory
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Containment
+      With: WebSocketWorker
+    - Flow: Out
+      Type: Dependency
+      With: SocketChannelIOHelper
+    - Flow: Out
+      Type: Dependency
+      With: WebSocket
+    - Flow: Out
+      Type: Dependency
+      With: WrappedByteChannel
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshake
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketFactory
+    - Flow: Out
+      Type: Dependency
+      With: Handshakedata
+    - Flow: Out
+      Type: Association
+      With: Draft
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..*
+    - Flow: Out
+      Type: Association
+      With: WebSocket
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..*
+    - Flow: Out
+      Type: Association
+      With: WebSocketWorker
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..*
+    - Flow: Out
+      Type: Association
+      With: WebSocketImpl
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..*
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: Out
+      Type: Generalization
+      With: AbstractWebSocket
+    - Flow: Out
+      Type: Dependency
+      With: AbstractWebSocket
+    - Flow: Out
+      Type: Dependency
+      With: WebsocketNotConnectedException
+
+WebSocketWorker (NORMAL)
+- Attributes:
+    - Name: iqueue
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (BlockingQueue)
+- Operations:
+    - Name: WebSocketWorker
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: put
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketImpl)
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Association
+      With: WebSocketServer
+      Multiplicity: 
+        - From: 0..*
+        - To: : 0..0
+    - Flow: Out
+      Type: Association
+      With: WebSocketImpl
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..*
+
+WebSocketServerFactory (INTERFACE)
+- Operations:
+    - Name: createWebSocket (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocketImpl)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketAdapter)
+       - CUSTOM_CLASS (Draft)
+    - Name: createWebSocket (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocketImpl)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketAdapter)
+       - INTERNAL_CLASS (List)
+    - Name: wrapChannel (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteChannel)
+      Parameters: 
+       - INTERNAL_CLASS (SocketChannel)
+       - INTERNAL_CLASS (SelectionKey)
+    - Name: close (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Association
+      With: WebSocketServer
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Realization
+      With: DefaultSSLWebSocketServerFactory
+    - Flow: In
+      Type: Realization
+      With: DefaultWebSocketServerFactory
+    - Flow: Out
+      Type: Generalization
+      With: WebSocketFactory
+    - Flow: Out
+      Type: Dependency
+      With: Draft
+
+Base64 (NORMAL)
+- Attributes:
+    - Name: NO_OPTIONS
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: ENCODE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: DECODE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: GZIP
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: DONT_GUNZIP
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: DO_BREAK_LINES
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: URL_SAFE
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: ORDERED
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: MAX_LINE_LENGTH
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: EQUALS_SIGN
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte)
+    - Name: NEW_LINE
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte)
+    - Name: PREFERRED_ENCODING
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: WHITE_SPACE_ENC
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte)
+    - Name: EQUALS_SIGN_ENC
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte)
+    - Name: _STANDARD_ALPHABET
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte[])
+    - Name: _STANDARD_DECODABET
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte[])
+    - Name: _URL_SAFE_ALPHABET
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte[])
+    - Name: _URL_SAFE_DECODABET
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte[])
+    - Name: _ORDERED_ALPHABET
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte[])
+    - Name: _ORDERED_DECODABET
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Byte[])
+- Operations:
+    - Name: getAlphabet
+      Visibility: PRIVATE
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: getDecodabet
+      Visibility: PRIVATE
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: Base64
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: encode3to4
+      Visibility: PRIVATE
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: encode3to4
+      Visibility: PRIVATE
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: encodeBytes
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: encodeBytes
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: encodeBytesToBytes
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: decode4to3
+      Visibility: PRIVATE
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: decode
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: decode
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: decode
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: decode
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+    - Name: decodeFromFile
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: encodeFromFile
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Containment
+      With: OutputStream
+    - Flow: In
+      Type: Containment
+      With: InputStream
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+InputStream (NORMAL)
+- Attributes:
+    - Name: encode
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: position
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: buffer
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+    - Name: bufferLength
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: numSigBytes
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: lineLength
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: breakLines
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: options
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: decodabet
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+- Operations:
+    - Name: InputStream
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (InputStream)
+    - Name: InputStream
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (InputStream)
+       - BASIC_TYPE (Int)
+    - Name: read
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: read
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: Base64
+
+OutputStream (NORMAL)
+- Attributes:
+    - Name: encode
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: position
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: buffer
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+    - Name: bufferLength
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: lineLength
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: breakLines
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: b4
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+    - Name: suspendEncoding
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: options
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: decodabet
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+- Operations:
+    - Name: OutputStream
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (OutputStream)
+    - Name: OutputStream
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (OutputStream)
+       - BASIC_TYPE (Int)
+    - Name: write
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: write
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: flushBase64
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: suspendEncoding
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: resumeEncoding
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: Base64
+
+Charsetfunctions (NORMAL)
+- Attributes:
+    - Name: codingErrorAction
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (CodingErrorAction)
+    - Name: utf8d
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (Int[])
+- Operations:
+    - Name: utf8Bytes
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: asciiBytes
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: stringAscii
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: stringAscii
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: stringUtf8
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: stringUtf8
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: isValidUTF8
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - BASIC_TYPE (Int)
+    - Name: isValidUTF8
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: Charsetfunctions
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: TextFrame
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+AbstractWrappedByteChannel (NORMAL)
+- Attributes:
+    - Name: channel
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteChannel)
+- Operations:
+    - Name: AbstractWrappedByteChannel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (ByteChannel)
+    - Name: AbstractWrappedByteChannel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (WrappedByteChannel)
+    - Name: read
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: isOpen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: write
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: isNeedWrite
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: writeMore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: isNeedRead
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: readMore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: isBlocking
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+- Relations:
+    - Flow: In
+      Type: Generalization
+      With: AbstractClientProxyChannel
+    - Flow: Out
+      Type: Realization
+      With: WrappedByteChannel
+    - Flow: Out
+      Type: Dependency
+      With: WrappedByteChannel
+
+SSLSocketChannel2 (NORMAL)
+- Attributes:
+    - Name: emptybuffer
+      Visibility: PROTECTED
+      Scope: Classifier
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: exec
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (ExecutorService)
+    - Name: tasks
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+    - Name: inData
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: outCrypt
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: inCrypt
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: socketChannel
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (SocketChannel)
+    - Name: selectionKey
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (SelectionKey)
+    - Name: readEngineResult
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (SSLEngineResult)
+    - Name: writeEngineResult
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (SSLEngineResult)
+    - Name: sslEngine
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (SSLEngine)
+    - Name: bufferallocations
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: SSLSocketChannel2
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (SocketChannel)
+       - INTERNAL_CLASS (SSLEngine)
+       - INTERNAL_CLASS (ExecutorService)
+       - INTERNAL_CLASS (SelectionKey)
+    - Name: consumeFutureUninterruptible
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Future)
+    - Name: processHandshake
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: wrap
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: unwrap
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: consumeDelegatedTasks
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+    - Name: createBuffers
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (SSLSession)
+    - Name: write
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: read
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: readRemaining
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: isConnected
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: isHandShakeComplete
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: configureBlocking
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (SelectableChannel)
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: connect
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (SocketAddress)
+    - Name: finishConnect
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: socket
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Socket)
+    - Name: isInboundDone
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isOpen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isNeedWrite
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: writeMore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: isNeedRead
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: readMore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: transfereTo
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: isBlocking
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: WrappedByteChannel
+    - Flow: In
+      Type: Dependency
+      With: DefaultSSLWebSocketServerFactory
+    - Flow: In
+      Type: Dependency
+      With: CustomSSLWebSocketServerFactory
+
+SocketChannelIOHelper (NORMAL)
+- Operations:
+    - Name: read
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - CUSTOM_CLASS (WebSocketImpl)
+       - INTERNAL_CLASS (ByteChannel)
+    - Name: readMore
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - CUSTOM_CLASS (WebSocketImpl)
+       - CUSTOM_CLASS (WrappedByteChannel)
+    - Name: batch
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketImpl)
+       - INTERNAL_CLASS (ByteChannel)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: Out
+      Type: Dependency
+      With: WrappedByteChannel
+    - Flow: Out
+      Type: Dependency
+      With: Role
+
+WebSocket (INTERFACE)
+- Attributes:
+    - Name: DEFAULT_PORT
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: DEFAULT_WSS_PORT
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: close (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: close (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: close (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: closeConnection (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: send (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: send (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: send (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: sendFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: hasBufferedData (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: getLocalSocketAddress (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+    - Name: isConnecting (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isOpen (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isClosing (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isFlushAndClose (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isClosed (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: getDraft (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Draft)
+    - Name: getReadyState (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (READYSTATE)
+    - Name: sendFragmentedFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Opcode)
+       - INTERNAL_CLASS (ByteBuffer)
+       - BASIC_TYPE (Boolean)
+    - Name: getResourceDescriptor (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: sendPing (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: sendFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Collection)
+    - Name: setAttachment (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (T)
+    - Name: getAttachment (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (T)
+- Relations:
+    - Flow: In
+      Type: Realization
+      With: WebSocketImpl
+    - Flow: In
+      Type: Containment
+      With: READYSTATE
+    - Flow: In
+      Type: Containment
+      With: Role
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: Out
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Association
+      With: WebSocketServer
+      Multiplicity: 
+        - From: 0..*
+        - To: : 0..0
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: In
+      Type: Realization
+      With: WebSocketClient
+
+Role (ENUMERATION)
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: WebSocket
+    - Flow: In
+      Type: Association
+      With: Draft
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Association
+      With: WebSocketImpl
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: SocketChannelIOHelper
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+READYSTATE (ENUMERATION)
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: WebSocket
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+
+WebSocketAdapter (ABSTRACT)
+- Operations:
+    - Name: onWebsocketHandshakeReceivedAsServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (ServerHandshakeBuilder)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Draft)
+       - CUSTOM_CLASS (ClientHandshake)
+    - Name: onWebsocketHandshakeReceivedAsClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (ClientHandshake)
+       - CUSTOM_CLASS (ServerHandshake)
+    - Name: onWebsocketHandshakeSentAsClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (ClientHandshake)
+    - Name: onWebsocketMessageFragment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+    - Name: onWebsocketPing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+    - Name: onWebsocketPong
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: WebSocketListener
+    - Flow: In
+      Type: Dependency
+      With: DefaultSSLWebSocketServerFactory
+    - Flow: In
+      Type: Dependency
+      With: DefaultWebSocketServerFactory
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshake
+    - Flow: Out
+      Type: Dependency
+      With: HandshakeImpl1Server
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshake
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: WebSocketFactory
+    - Flow: Out
+      Type: Dependency
+      With: InvalidHandshakeException
+    - Flow: In
+      Type: Generalization
+      With: AbstractWebSocket
+    - Flow: Out
+      Type: Dependency
+      With: PingFrame
+    - Flow: Out
+      Type: Dependency
+      With: PongFrame
+
+WebSocketFactory (INTERFACE)
+- Operations:
+    - Name: createWebSocket (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocket)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketAdapter)
+       - CUSTOM_CLASS (Draft)
+    - Name: createWebSocket (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocket)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketAdapter)
+       - INTERNAL_CLASS (List)
+- Relations:
+    - Flow: In
+      Type: Generalization
+      With: WebSocketServerFactory
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: Out
+      Type: Dependency
+      With: Draft
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketAdapter
+
+WebSocketImpl (NORMAL)
+- Attributes:
+    - Name: RCVBUF
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: DEBUG
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Boolean)
+    - Name: key
+      Visibility: PUBLIC
+      Scope: Instance
+      Type: INTERNAL_CLASS (SelectionKey)
+    - Name: channel
+      Visibility: PUBLIC
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteChannel)
+    - Name: outQueue
+      Visibility: PUBLIC
+      Scope: Instance
+      Type: INTERNAL_CLASS (BlockingQueue)
+    - Name: inQueue
+      Visibility: PUBLIC
+      Scope: Instance
+      Type: INTERNAL_CLASS (BlockingQueue)
+    - Name: flushandclosestate
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: readystate
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (READYSTATE)
+    - Name: knownDrafts
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+    - Name: draft
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (Draft)
+    - Name: role
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Role)
+    - Name: tmpHandshakeBytes
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: closemessage
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: closecode
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Integer)
+    - Name: closedremotely
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Boolean)
+    - Name: workerThread
+      Visibility: PUBLIC
+      Scope: Instance
+      Type: CUSTOM_CLASS (WebSocketWorker)
+    - Name: wsl
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (WebSocketListener)
+    - Name: handshakerequest
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (ClientHandshake)
+    - Name: resourceDescriptor
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: lastPong
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Long)
+    - Name: synchronizeWriteObject
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Object)
+    - Name: pingFrame
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (PingFrame)
+    - Name: attachment
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Object)
+- Operations:
+    - Name: WebSocketImpl
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketListener)
+       - INTERNAL_CLASS (List)
+    - Name: WebSocketImpl
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketListener)
+       - CUSTOM_CLASS (Draft)
+    - Name: WebSocketImpl
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketListener)
+       - CUSTOM_CLASS (Draft)
+       - INTERNAL_CLASS (Socket)
+    - Name: WebSocketImpl
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketListener)
+       - INTERNAL_CLASS (List)
+       - INTERNAL_CLASS (Socket)
+    - Name: decode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: decodeHandshake
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: decodeFrames
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: closeConnection
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: closeConnection
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Boolean)
+    - Name: closeConnection
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: closeConnection
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: flushAndClose
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: eot
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (InvalidDataException)
+    - Name: send
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: send
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: send
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: send
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Collection)
+    - Name: sendFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: hasBufferedData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: startHandshake
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshakeBuilder)
+    - Name: write
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: write
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (List)
+    - Name: open
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Handshakedata)
+    - Name: isConnecting
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isOpen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isClosing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isFlushAndClose
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isClosed
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: getReadyState
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (READYSTATE)
+    - Name: setReadyState
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (READYSTATE)
+    - Name: hashCode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: toString
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getRemoteSocketAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+    - Name: getLocalSocketAddress
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getDraft
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Draft)
+    - Name: sendFragmentedFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Opcode)
+       - INTERNAL_CLASS (ByteBuffer)
+       - BASIC_TYPE (Boolean)
+    - Name: getResourceDescriptor
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getLastPong
+      Visibility: PACKAGE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Long)
+    - Name: sendPing
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: closeConnectionDueToWrongHandshake
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (InvalidDataException)
+    - Name: closeConnectionDueToInternalServerError
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (RuntimeException)
+    - Name: generateHttpResponseDueToError
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: sendFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Collection)
+    - Name: updateLastPong
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getWebSocketListener
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (WebSocketListener)
+    - Name: getAttachment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (T)
+    - Name: setAttachment
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (T)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: ClientHandshake
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Realization
+      With: WebSocket
+    - Flow: In
+      Type: Association
+      With: WebSocketClient
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: Out
+      Type: Association
+      With: WebSocketListener
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: In
+      Type: Dependency
+      With: DefaultSSLWebSocketServerFactory
+    - Flow: In
+      Type: Dependency
+      With: DefaultWebSocketServerFactory
+    - Flow: Out
+      Type: Dependency
+      With: IncompleteHandshakeException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidHandshakeException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: WebsocketNotConnectedException
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshake
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshake
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketWorker
+    - Flow: Out
+      Type: Dependency
+      With: Charsetfunctions
+    - Flow: In
+      Type: Dependency
+      With: SocketChannelIOHelper
+    - Flow: Out
+      Type: Association
+      With: Draft
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..*
+    - Flow: Out
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Association
+      With: WebSocketServer
+      Multiplicity: 
+        - From: 0..*
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: WebSocketWorker
+      Multiplicity: 
+        - From: 0..*
+        - To: : 0..0
+    - Flow: Out
+      Type: Association
+      With: Role
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: Draft_6455
+    - Flow: Out
+      Type: Dependency
+      With: PingFrame
+    - Flow: Out
+      Type: Association
+      With: PingFrame
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..1
+    - Flow: In
+      Type: Dependency
+      With: Draft
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+    - Flow: In
+      Type: Dependency
+      With: AbstractWebSocket
+
+WebSocketListener (INTERFACE)
+- Operations:
+    - Name: onWebsocketHandshakeReceivedAsServer (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (ServerHandshakeBuilder)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Draft)
+       - CUSTOM_CLASS (ClientHandshake)
+    - Name: onWebsocketHandshakeReceivedAsClient (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (ClientHandshake)
+       - CUSTOM_CLASS (ServerHandshake)
+    - Name: onWebsocketHandshakeSentAsClient (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (ClientHandshake)
+    - Name: onWebsocketMessage (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (String)
+    - Name: onWebsocketMessage (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: onWebsocketMessageFragment (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+    - Name: onWebsocketOpen (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Handshakedata)
+    - Name: onWebsocketClose (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: onWebsocketClosing (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: onWebsocketCloseInitiated (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+    - Name: onWebsocketError (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - INTERNAL_CLASS (Exception)
+    - Name: onWebsocketPing (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+    - Name: onWebsocketPong (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+       - CUSTOM_CLASS (Framedata)
+    - Name: onWriteDemand (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: getLocalSocketAddress (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+    - Name: getRemoteSocketAddress (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InetSocketAddress)
+      Parameters: 
+       - CUSTOM_CLASS (WebSocket)
+- Relations:
+    - Flow: In
+      Type: Association
+      With: WebSocketImpl
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Realization
+      With: WebSocketAdapter
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshake
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshake
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: Handshakedata
+
+WrappedByteChannel (INTERFACE)
+- Operations:
+    - Name: writeMore (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: readMore (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: isNeedWrite (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isNeedRead (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isBlocking (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+- Relations:
+    - Flow: In
+      Type: Realization
+      With: AbstractWrappedByteChannel
+    - Flow: In
+      Type: Realization
+      With: SSLSocketChannel2
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: SocketChannelIOHelper
+    - Flow: In
+      Type: Dependency
+      With: AbstractWrappedByteChannel
+    - Flow: In
+      Type: Realization
+      With: SSLSocketChannel
+
+ControlFrame (ABSTRACT)
+- Operations:
+    - Name: isValid
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: ControlFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (Opcode)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: FramedataImpl1
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidFrameException
+    - Flow: Out
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: In
+      Type: Generalization
+      With: PingFrame
+    - Flow: In
+      Type: Generalization
+      With: PongFrame
+    - Flow: In
+      Type: Generalization
+      With: CloseFrame
+    - Flow: In
+      Type: Dependency
+      With: CompressionExtension
+
+PingFrame (NORMAL)
+- Operations:
+    - Name: PingFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: ControlFrame
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: In
+      Type: Dependency
+      With: PongFrame
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: In
+      Type: Association
+      With: WebSocketImpl
+      Multiplicity: 
+        - From: 0..1
+        - To: : 0..0
+
+PongFrame (NORMAL)
+- Operations:
+    - Name: PongFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: PongFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (PingFrame)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: ControlFrame
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Dependency
+      With: PingFrame
+    - Flow: In
+      Type: Dependency
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+
+DataFrame (ABSTRACT)
+- Operations:
+    - Name: isValid
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: DataFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (Opcode)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: FramedataImpl1
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: In
+      Type: Generalization
+      With: TextFrame
+    - Flow: In
+      Type: Generalization
+      With: ContinuousFrame
+    - Flow: In
+      Type: Generalization
+      With: BinaryFrame
+    - Flow: In
+      Type: Dependency
+      With: CompressionExtension
+
+TextFrame (NORMAL)
+- Operations:
+    - Name: TextFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: isValid
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: DataFrame
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: Out
+      Type: Dependency
+      With: Charsetfunctions
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+ContinuousFrame (NORMAL)
+- Operations:
+    - Name: ContinuousFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: DataFrame
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+
+BinaryFrame (NORMAL)
+- Operations:
+    - Name: BinaryFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: DataFrame
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+CustomSSLWebSocketServerFactory (NORMAL)
+- Attributes:
+    - Name: enabledProtocols
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String[])
+    - Name: enabledCiphersuites
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String[])
+- Operations:
+    - Name: wrapChannel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteChannel)
+      Parameters: 
+       - INTERNAL_CLASS (SocketChannel)
+       - INTERNAL_CLASS (SelectionKey)
+    - Name: CustomSSLWebSocketServerFactory
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (SSLContext)
+       - BASIC_TYPE (String[])
+       - BASIC_TYPE (String[])
+    - Name: CustomSSLWebSocketServerFactory
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (SSLContext)
+       - INTERNAL_CLASS (ExecutorService)
+       - BASIC_TYPE (String[])
+       - BASIC_TYPE (String[])
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: DefaultSSLWebSocketServerFactory
+    - Flow: Out
+      Type: Dependency
+      With: SSLSocketChannel2
+
+ByteBufferUtils (NORMAL)
+- Operations:
+    - Name: ByteBufferUtils
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: transferByteBuffer
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: getEmptyByteBuffer
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: SSLSocketChannel
+    - Flow: In
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: In
+      Type: Dependency
+      With: CloseFrame
+
+AbstractWebSocket (ABSTRACT)
+- Attributes:
+    - Name: tcpNoDelay
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: connectionLostTimer
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Timer)
+    - Name: connectionLostTimerTask
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TimerTask)
+    - Name: connectionLostTimeout
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: reuseAddr
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: websocketRunning
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+- Operations:
+    - Name: getConnectionLostTimeout
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: setConnectionLostTimeout
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: isTcpNoDelay
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: setTcpNoDelay
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: stopConnectionLostTime
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+    - Name: startConnectionLostTimer
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+    - Name: getConnections (Abstract)
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Collection)
+    - Name: cancelConnectionLostTimer
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: isReuseAddr
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: setReuseAddr
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: restartConnectionLostTimer
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: WebSocketAdapter
+    - Flow: In
+      Type: Generalization
+      With: WebSocketServer
+    - Flow: In
+      Type: Dependency
+      With: WebSocketServer
+    - Flow: In
+      Type: Generalization
+      With: WebSocketClient
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketImpl
+
+SSLSocketChannel (NORMAL)
+- Attributes:
+    - Name: socketChannel
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (SocketChannel)
+    - Name: engine
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (SSLEngine)
+    - Name: myAppData
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: myNetData
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: peerAppData
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: peerNetData
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: executor
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ExecutorService)
+- Operations:
+    - Name: SSlSocketChannel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (SocketChannel)
+       - INTERNAL_CLASS (SSLEngine)
+       - INTERNAL_CLASS (ExecutorService)
+       - INTERNAL_CLASS (SelectionKey)
+    - Name: read
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: write
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: doHandshake
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: enlargePacketBuffer
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: enlargeApplicationBuffer
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: handleBufferUnderflow
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: enlargeBuffer
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - BASIC_TYPE (Int)
+    - Name: closeConnection
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: handleEndOfStream
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: writeMore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: readMore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: isNeedWrite
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isNeedRead
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isBlocking
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: isOpen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: close
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: WrappedByteChannel
+    - Flow: Out
+      Type: Dependency
+      With: ByteBufferUtils
+
+Draft_6455 (NORMAL)
+- Attributes:
+    - Name: extension
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (IExtension)
+    - Name: knownExtensions
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+    - Name: current_continuous_frame
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (Framedata)
+    - Name: byteBufferList
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+    - Name: incompleteframe
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: reusableRandom
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Random)
+    - Name: protocol
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (IProtocol)
+    - Name: knownProtocols
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+- Operations:
+    - Name: postProcessHandshakeResponseAsServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (HandshakeBuilder)
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshake)
+       - CUSTOM_CLASS (ServerHandshakeBuilder)
+    - Name: copyInstance
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (Draft)
+    - Name: getServerTime
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: Draft_6455
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (List)
+    - Name: Draft_6455
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (IExtension)
+    - Name: Draft_6455
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: acceptHandshakeAsClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (HandshakeState)
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshake)
+       - CUSTOM_CLASS (ServerHandshake)
+    - Name: acceptHandshakeAsServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (HandshakeState)
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshake)
+    - Name: createBinaryFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: createFrames
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+       - BASIC_TYPE (Boolean)
+    - Name: createFrames
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+    - Name: reset
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: postProcessHandshakeRequestAsClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (ClientHandshakeBuilder)
+      Parameters: 
+       - CUSTOM_CLASS (ClientHandshakeBuilder)
+    - Name: translateFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: getCloseHandshakeType
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (CloseHandshakeType)
+    - Name: processFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (WebSocketImpl)
+       - CUSTOM_CLASS (Framedata)
+    - Name: toString
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getPayloadFromByteBufferList
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+    - Name: hashCode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: equals
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Object)
+    - Name: getExtension
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (IExtension)
+    - Name: getKnownExtensions
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+    - Name: createByteBufferFromFramedata
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (ByteBuffer)
+      Parameters: 
+       - INTERNAL_CLASS (FrameData)
+    - Name: translateSingleFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (FrameData)
+      Parameters: 
+       - INTERNAL_CLASS (ByteBuffer)
+    - Name: generateFinalKey
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: toByteArray
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (Long)
+       - BASIC_TYPE (Int)
+    - Name: fromOpcode
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte)
+      Parameters: 
+       - CUSTOM_CLASS (Opcode)
+    - Name: toOpcode
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (Opcode)
+      Parameters: 
+       - BASIC_TYPE (Byte)
+    - Name: getProtocol
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (IProtocol)
+    - Name: getKnownProtocols
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+    - Name: logDebug
+      Visibility: PRIVATE
+      Scope: Classifier
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Object)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: In
+      Type: Dependency
+      With: WebSocketClient
+    - Flow: Out
+      Type: Dependency
+      With: HandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshake
+    - Flow: Out
+      Type: Dependency
+      With: InvalidHandshakeException
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshakeBuilder
+    - Flow: Out
+      Type: Generalization
+      With: Draft
+    - Flow: Out
+      Type: Association
+      With: IExtension
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: IExtension
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..*
+    - Flow: Out
+      Type: Association
+      With: Framedata
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: IExtension
+    - Flow: Out
+      Type: Dependency
+      With: DefaultExtension
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: Out
+      Type: Dependency
+      With: IncompleteException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: HandshakeState
+    - Flow: Out
+      Type: Dependency
+      With: Base64
+    - Flow: Out
+      Type: Dependency
+      With: WebSocketImpl
+    - Flow: Out
+      Type: Dependency
+      With: Role
+    - Flow: Out
+      Type: Dependency
+      With: Opcode
+    - Flow: Out
+      Type: Dependency
+      With: FramedataImpl1
+    - Flow: Out
+      Type: Dependency
+      With: Charsetfunctions
+    - Flow: Out
+      Type: Dependency
+      With: CloseHandshakeType
+    - Flow: Out
+      Type: Dependency
+      With: CloseFrame
+    - Flow: Out
+      Type: Dependency
+      With: TextFrame
+    - Flow: Out
+      Type: Dependency
+      With: BinaryFrame
+    - Flow: Out
+      Type: Dependency
+      With: ServerHandshake
+    - Flow: Out
+      Type: Dependency
+      With: ClientHandshakeBuilder
+    - Flow: Out
+      Type: Dependency
+      With: LimitExedeedException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidFrameException
+    - Flow: Out
+      Type: Dependency
+      With: NotSendableException
+    - Flow: Out
+      Type: Association
+      With: IProtocol
+      Multiplicity: 
+        - From: 0..0
+        - To: : 0..*
+    - Flow: Out
+      Type: Dependency
+      With: IProtocol
+
+IExtension (INTERFACE)
+- Operations:
+    - Name: decodeFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: isFrameValid (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: encodeFrame (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: acceptProvidedExtensionAsServer (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: acceptProvidedExtensionAsClient (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getProvidedExtensionAsClient (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getProvidedExtensionAsServer (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: copyInstance (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (IExtension)
+    - Name: reset (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: toString (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: In
+      Type: Realization
+      With: DefaultExtension
+    - Flow: In
+      Type: Association
+      With: Draft_6455
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: Draft_6455
+      Multiplicity: 
+        - From: 0..*
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+DefaultExtension (NORMAL)
+- Operations:
+    - Name: decodeFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: isFrameValid
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: encodeFrame
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+    - Name: acceptProvidedExtensionAsServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: acceptProvidedExtensionAsClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getProvidedExtensionAsClient
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getProvidedExtensionAsServer
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: copyInstance
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (IExtension)
+    - Name: reset
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: toString
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: hashCode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: equals
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Object)
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: IExtension
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidFrameException
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+    - Flow: In
+      Type: Generalization
+      With: CompressionExtension
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+CompressionExtension (NORMAL)
+- Operations:
+    - Name: isFrameValid
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (Framedata)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: DefaultExtension
+    - Flow: Out
+      Type: Dependency
+      With: InvalidDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidFrameException
+    - Flow: Out
+      Type: Dependency
+      With: ControlFrame
+    - Flow: Out
+      Type: Dependency
+      With: DataFrame
+    - Flow: Out
+      Type: Dependency
+      With: Framedata
+
+IProtocol (INTERFACE)
+- Operations:
+    - Name: acceptProvidedProtocol (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: copyInstance (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (IProtocol)
+    - Name: toString (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getProvidedProtocol (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Realization
+      With: Protocol
+    - Flow: In
+      Type: Association
+      With: Draft_6455
+      Multiplicity: 
+        - From: 0..*
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: Draft_6455
+
+Protocol (NORMAL)
+- Attributes:
+    - Name: providedProtocol
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+- Operations:
+    - Name: Protocol
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: acceptProvidedProtocol
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: copyInstance
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (IProtocol)
+    - Name: toString
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: equals
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Object)
+    - Name: hashCode
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: getProvidedProtocol
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: IProtocol
