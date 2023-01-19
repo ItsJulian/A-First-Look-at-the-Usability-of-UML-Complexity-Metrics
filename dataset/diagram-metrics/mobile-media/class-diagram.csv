@@ -1,0 +1,9 @@
+x,"Individual Element Complexity","Size and Structural Class Complexity::NC","Size and Structural Class Complexity::NA","Size and Structural Class Complexity::NM","Size and Structural Class Complexity::NAssoc","Size and Structural Class Complexity::NAgg","Size and Structural Class Complexity::NDep","Size and Structural Class Complexity::NGen","Size and Structural Class Complexity::NGenH","Size and Structural Class Complexity::MaxDIT","Size and Structural Class Complexity::MaxHAgg","Weighted Dependency Graph Complexity"
+1,1163,16,56,92,9,0,18,0,0,0,0,1.7407716558329
+2,1470,25,62,124,9,0,43,3,1,1,0,2.1862459542563
+3,1672,26,71,140,12,0,50,3,1,1,0,2.3426969108912
+4,1708,26,74,143,12,0,50,3,1,1,0,2.3598958927408
+5,1877,31,75,160,12,0,83,8,2,2,0,2.6584718786098
+6,2396,38,106,200,14,0,106,11,3,2,0,2.8911120529559
+7,2966,47,133,239,20,0,142,19,7,2,0,2.8772917009538
+8,3469,51,166,270,32,0,172,23,7,2,0,3.0761624619538

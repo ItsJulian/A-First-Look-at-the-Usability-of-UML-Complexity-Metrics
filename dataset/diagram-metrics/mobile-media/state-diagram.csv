@@ -1,0 +1,9 @@
+x,"Classification Based Complexity","Grouped Complexity::CFF","Grouped Complexity::EEA","Grouped Complexity::NA","Size and Structural State Complexity::NEntryA","Size and Structural State Complexity::NExitA","Size and Structural State Complexity::NA","Size and Structural State Complexity::NSS","Size and Structural State Complexity::NCS","Size and Structural State Complexity::NE","Size and Structural State Complexity::NG","Size and Structural State Complexity::McCabe","Size and Structural State Complexity::NT"
+1,49,48,3,0,3,0,0,8,0,16,0,7,17
+2,60,59,3,0,3,0,0,8,0,16,11,7,17
+3,75,75,3,0,3,0,0,9,0,20,15,10,21
+4,79,79,3,0,3,0,0,9,0,21,16,11,22
+5,81,82,3,0,3,0,0,9,0,22,16,12,23
+6,114,118,4,0,4,0,0,16,0,30,16,19,37
+7,133,140,4,1,4,0,1,18,0,36,20,23,43
+8,166,175,4,2,4,0,2,22,0,46,25,29,53

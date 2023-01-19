@@ -29,6 +29,13 @@ The same tool, as used for determining the correctness of the class diagrams, is
 
 [Click Here](./dataset/state-diagrams/) to go to the state diagrams.
 
+## Diagram Metrics
+This dataset also contains the calculated diagram metrics (as a CSV file) for each version of the [Java Websockets](https://github.com/TooTallNate/Java-WebSocket) and [Mobile Media](https://github.com/julioserafim/MobileMedia) codebase. 
+
+The metrics are calculated based on the formulas provided by the paper the metrics are presented in. More information about these metrics and references to their original paper can be found in our conference paper.
+
+[Click Here](./dataset/diagram-metrics/) to go to the diagram metrics.
+
 # Contact
 Below you will find the contact information of the researchers and supervisor.
 
