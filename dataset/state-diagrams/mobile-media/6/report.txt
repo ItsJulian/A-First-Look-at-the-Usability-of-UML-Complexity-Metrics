@@ -1,0 +1,392 @@
+Initial State
+- Transitions:
+    - Flow: Out
+      With: Fork
+
+Final State
+- Transitions:
+    - Flow: In
+      With: AlbumList
+      Title: Exit
+      Trigger: User
+      Trigger Type: Signal
+
+Awaiting message
+- Activities:
+    - Type: Entry
+      Value: Start listening
+- Transitions:
+    - Flow: In
+      With: Fork
+    - Flow: Out
+      With: Fork
+      Title: Receive Image
+      Trigger: SMS Message
+      Trigger Type: Call
+    - Flow: In
+      With: Fork
+    - Flow: Out
+      With: Fork
+      Title: Error received
+      Trigger: SMS Message
+      Trigger Type: Call
+    - Flow: In
+      With: Fork
+
+Error during receiving
+- Transitions:
+    - Flow: Out
+      With: AlbumList
+      Title: Ok
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: Fork
+
+Send photo
+- Transitions:
+    - Flow: In
+      With: PhotoView
+      Title: Send Photo by SMS
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: Send photo
+      Title: Send now
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Send image over sms
+    - Flow: In
+      With: Send photo
+      Title: Send now
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Send image over sms
+    - Flow: Out
+      With: AlbumList
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+
+Photo received
+- Transitions:
+    - Flow: In
+      With: Fork
+    - Flow: Out
+      With: AlbumList
+      Title: Reject photo
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoView
+      Title: Accept Photo
+      Trigger: User
+      Trigger Type: Signal
+
+Edit label
+- Transitions:
+    - Flow: In
+      With: PhotoList
+      Title: Edit Label
+      Trigger: User
+      Trigger Type: Signal
+      Guard: imageFound & albumExists
+    - Flow: Out
+      With: PhotoList
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Save
+      Trigger: User
+      Trigger Type: Signal
+      Guard: albumExists
+      Effect: Update Photo Label
+
+AddPhotoToAlbum
+- Transitions:
+    - Flow: In
+      With: PhotoList
+      Title: Add
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Save Photo
+      Trigger: User
+      Trigger Type: Signal
+      Guard: validImagePath & validImageFormat
+      Effect: Save photo
+    - Flow: Out
+      With: PhotoList
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: PhotoView
+      Title: Copy
+      Trigger: User
+      Trigger Type: Signal
+
+PhotoView
+- Activities:
+    - Type: Entry
+      Value: Load Image
+- Transitions:
+    - Flow: In
+      With: PhotoList
+      Title: View
+      Trigger: User
+      Trigger Type: Signal
+      Guard: imageFound & canOpenFromDB
+    - Flow: Out
+      With: PhotoList
+      Title: Back
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AddPhotoToAlbum
+      Title: Copy
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: Photo received
+      Title: Accept Photo
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: Send photo
+      Title: Send Photo by SMS
+      Trigger: User
+      Trigger Type: Signal
+
+PhotoList
+- Activities:
+    - Type: Entry
+      Value: Initialize photo list
+- Transitions:
+    - Flow: In
+      With: AlbumList
+      Title: Select
+      Trigger: User
+      Trigger Type: Signal
+      Guard: albumExists
+    - Flow: Out
+      With: PhotoView
+      Title: View
+      Trigger: User
+      Trigger Type: Signal
+      Guard: imageFound & canOpenFromDB
+    - Flow: In
+      With: PhotoView
+      Title: Back
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AddPhotoToAlbum
+      Title: Add
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: AddPhotoToAlbum
+      Title: Save Photo
+      Trigger: User
+      Trigger Type: Signal
+      Guard: validImagePath & validImageFormat
+      Effect: Save photo
+    - Flow: In
+      With: AddPhotoToAlbum
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Delete
+      Trigger: User
+      Trigger Type: Signal
+      Guard: canDeleteFromDB & albumExists
+      Effect: Delete image
+    - Flow: In
+      With: PhotoList
+      Title: Delete
+      Trigger: User
+      Trigger Type: Signal
+      Guard: canDeleteFromDB & albumExists
+      Effect: Delete image
+    - Flow: Out
+      With: AlbumList
+      Title: Back
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Sort by Views
+      Trigger: User
+      Trigger Type: Signal
+      Guard: albumExists
+      Effect: Sort list
+    - Flow: In
+      With: PhotoList
+      Title: Sort by Views
+      Trigger: User
+      Trigger Type: Signal
+      Guard: albumExists
+      Effect: Sort list
+    - Flow: Out
+      With: Edit label
+      Title: Edit Label
+      Trigger: User
+      Trigger Type: Signal
+      Guard: imageFound & albumExists
+    - Flow: In
+      With: Edit label
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: Edit label
+      Title: Save
+      Trigger: User
+      Trigger Type: Signal
+      Guard: albumExists
+      Effect: Update Photo Label
+    - Flow: Out
+      With: PhotoList
+      Title: View favorites
+      Trigger: User
+      Trigger Type: Signal
+      Guard: albumExists
+      Effect: Filter favorites
+    - Flow: In
+      With: PhotoList
+      Title: View favorites
+      Trigger: User
+      Trigger Type: Signal
+      Guard: albumExists
+      Effect: Filter favorites
+
+Delete confirmation
+- Transitions:
+    - Flow: In
+      With: AlbumList
+      Title: Delete album
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AlbumList
+      Title: Yes Delete
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Delete album
+    - Flow: Out
+      With: AlbumList
+      Title: No delete
+      Trigger: User
+      Trigger Type: Signal
+
+New Label
+- Transitions:
+    - Flow: In
+      With: AlbumList
+      Title: New album
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AlbumList
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AlbumList
+      Title: Save
+      Trigger: User
+      Trigger Type: Signal
+      Guard: nameIsValid & canAddAlbumToDB
+      Effect: Create Album
+
+AlbumList
+- Activities:
+    - Type: Entry
+      Value: Initialize album list
+- Transitions:
+    - Flow: In
+      With: Fork
+    - Flow: Out
+      With: Final State
+      Title: Exit
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AlbumList
+      Title: Reset imagedata
+      Trigger: User
+      Trigger Type: Signal
+      Guard: DBNotFull & canReset
+      Effect: Delete existing data
+    - Flow: In
+      With: AlbumList
+      Title: Reset imagedata
+      Trigger: User
+      Trigger Type: Signal
+      Guard: DBNotFull & canReset
+      Effect: Delete existing data
+    - Flow: Out
+      With: New Label
+      Title: New album
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: New Label
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: New Label
+      Title: Save
+      Trigger: User
+      Trigger Type: Signal
+      Guard: nameIsValid & canAddAlbumToDB
+      Effect: Create Album
+    - Flow: Out
+      With: Delete confirmation
+      Title: Delete album
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: Delete confirmation
+      Title: Yes Delete
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Delete album
+    - Flow: In
+      With: Delete confirmation
+      Title: No delete
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Select
+      Trigger: User
+      Trigger Type: Signal
+      Guard: albumExists
+    - Flow: In
+      With: PhotoList
+      Title: Back
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: Photo received
+      Title: Reject photo
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: Error during receiving
+      Title: Ok
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: Send photo
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal

@@ -1,0 +1,206 @@
+Initial State
+- Transitions:
+    - Flow: Out
+      With: AlbumList
+
+Final State
+- Transitions:
+    - Flow: In
+      With: AlbumList
+      Title: Exit
+      Trigger: User
+      Trigger Type: Signal
+
+AddPhotoToAlbum
+- Transitions:
+    - Flow: In
+      With: PhotoList
+      Title: Add
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Save add Photo
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Save photo
+    - Flow: Out
+      With: PhotoList
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+
+PhotoView
+- Activities:
+    - Type: Entry
+      Value: Load Image
+- Transitions:
+    - Flow: In
+      With: PhotoList
+      Title: View
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Back
+      Trigger: User
+      Trigger Type: Signal
+
+PhotoList
+- Activities:
+    - Type: Entry
+      Value: Initialize photo list
+- Transitions:
+    - Flow: In
+      With: AlbumList
+      Title: Select
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoView
+      Title: View
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: PhotoView
+      Title: Back
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AddPhotoToAlbum
+      Title: Add
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: AddPhotoToAlbum
+      Title: Save add Photo
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Save photo
+    - Flow: In
+      With: AddPhotoToAlbum
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Delete
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Delete image
+    - Flow: In
+      With: PhotoList
+      Title: Delete
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Delete image
+    - Flow: Out
+      With: AlbumList
+      Title: Back
+      Trigger: User
+      Trigger Type: Signal
+
+Delete confirmation
+- Transitions:
+    - Flow: In
+      With: AlbumList
+      Title: Delete album
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AlbumList
+      Title: Yes Delete
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Delete album
+    - Flow: Out
+      With: AlbumList
+      Title: No delete
+      Trigger: User
+      Trigger Type: Signal
+
+New Album
+- Transitions:
+    - Flow: In
+      With: AlbumList
+      Title: New album
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AlbumList
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AlbumList
+      Title: Save
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Create Album
+
+AlbumList
+- Activities:
+    - Type: Entry
+      Value: Initialize album list
+- Transitions:
+    - Flow: In
+      With: Initial State
+    - Flow: Out
+      With: Final State
+      Title: Exit
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: AlbumList
+      Title: Reset imagedata
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Delete existing data
+    - Flow: In
+      With: AlbumList
+      Title: Reset imagedata
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Delete existing data
+    - Flow: Out
+      With: New Album
+      Title: New album
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: New Album
+      Title: Cancel
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: New Album
+      Title: Save
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Create Album
+    - Flow: Out
+      With: Delete confirmation
+      Title: Delete album
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: Delete confirmation
+      Title: Yes Delete
+      Trigger: User
+      Trigger Type: Signal
+      Effect: Delete album
+    - Flow: In
+      With: Delete confirmation
+      Title: No delete
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: Out
+      With: PhotoList
+      Title: Select
+      Trigger: User
+      Trigger Type: Signal
+    - Flow: In
+      With: PhotoList
+      Title: Back
+      Trigger: User
+      Trigger Type: Signal
