@@ -1,0 +1,3953 @@
+PlayVideoScreen (NORMAL)
+- Attributes:
+    - Name: player
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Player)
+    - Name: videoControl
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (VideoControl)
+    - Name: start
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: back
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: stop
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: copy
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: display
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Display)
+    - Name: error
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: dy
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: startVideo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: stopVideo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: PlayVideoScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - INTERNAL_CLASS (InputStream)
+       - BASIC_TYPE (String)
+       - CUSTOM_CLASS (AbstractController)
+    - Name: paint
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Graphics)
+    - Name: keyPressed
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: setVisibleVideo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Association
+      With: PlayVideoController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+
+CaptureVideoScreen (NORMAL)
+- Attributes:
+    - Name: capturePlayer
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Player)
+    - Name: display
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Display)
+    - Name: videoControl
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (VideoControl)
+    - Name: rControl
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (RecordControl)
+    - Name: byteOfArray
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (ByteArrayOutputStream)
+    - Name: start
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: stop
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: takephoto
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: back
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: recording
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: CAPTUREPHOTO
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: CAPTUREVIDEO
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: typescreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: CaptureVideoScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - BASIC_TYPE (Int)
+    - Name: startCapture
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: pauseCapture
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getByteArrays
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+    - Name: takePicture
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+    - Name: keyPressed
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: paint
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Graphics)
+    - Name: setVisibleVideo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Association
+      With: VideoCaptureController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: VideoCaptureController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Association
+      With: PhotoViewController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+
+VideoMediaAccessor (NORMAL)
+- Operations:
+    - Name: VideoMediaAccessor
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: resetRecordStore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: addVideoData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Byte[])
+    - Name: inputStreamToBytes
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - INTERNAL_CLASS (InputStream)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: MusicMediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: MultiMediaData
+    - Flow: Out
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: In
+      Type: Dependency
+      With: VideoAlbumData
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+
+VideoAlbumData (NORMAL)
+- Operations:
+    - Name: VideoAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: getVideoFromRecordStore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InputStream)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Dependency
+      With: VideoMediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Generalization
+      With: AlbumData
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+
+VideoCaptureController (NORMAL)
+- Attributes:
+    - Name: saveVideoToAlbum
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AddMediaToAlbum)
+    - Name: pmscreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (CaptureVideoScreen)
+- Operations:
+    - Name: VideoCaptureController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - INTERNAL_CLASS (List)
+       - CUSTOM_CLASS (CaptureVideoScreen)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: CaptureVideoScreen
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: CaptureVideoScreen
+    - Flow: Out
+      Type: Dependency
+      With: AddMediaToAlbum
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: Out
+      Type: Association
+      With: AddMediaToAlbum
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+
+PlayVideoController (NORMAL)
+- Attributes:
+    - Name: mediaName
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: pmscreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (PlayVideoScreen)
+- Operations:
+    - Name: PlayVideoController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - INTERNAL_CLASS (List)
+       - CUSTOM_CLASS (PlayVideoScreen)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: getMediaName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setMediaName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: PlayVideoScreen
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: PlayVideoScreen
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: Out
+      Type: Dependency
+      With: AddMediaToAlbum
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: ImagePathNotValidException
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+
+SelectMediaController (NORMAL)
+- Attributes:
+    - Name: imageController
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (BaseController)
+    - Name: musicController
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (BaseController)
+    - Name: imageAlbumData
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: musicAlbumData
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: videoAlbumData
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: videoController
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (BaseController)
+- Operations:
+    - Name: SelectMediaController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - INTERNAL_CLASS (List)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: getVideoController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (BaseController)
+    - Name: setVideoController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (BaseController)
+    - Name: getVideoAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (AlbumData)
+    - Name: setVideoAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: getMusicAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (AlbumData)
+    - Name: setMusicAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: getImageAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (AlbumData)
+    - Name: setImageAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: getMusicController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (BaseController)
+    - Name: setMusicController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (BaseController)
+    - Name: getImageController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (BaseController)
+    - Name: setImageController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (BaseController)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: BaseController
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+
+MusicPlayController (NORMAL)
+- Attributes:
+    - Name: mediaName
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: pmscreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (PlayMediaScreen)
+- Operations:
+    - Name: MusicPlayController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - INTERNAL_CLASS (List)
+       - CUSTOM_CLASS (PlayMediaScreen)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: getMediaName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setMediaName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: Out
+      Type: Association
+      With: PlayMediaScreen
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: PlayMediaScreen
+    - Flow: Out
+      Type: Dependency
+      With: AddMediaToAlbum
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: ImagePathNotValidException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+
+PlayMediaScreen (NORMAL)
+- Attributes:
+    - Name: start
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: back
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: stop
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: copy
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: midiPlayer
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Player)
+    - Name: volControl
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (VolumeControl)
+    - Name: pitchControl
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (PitchControl)
+    - Name: tempoControl
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TempoControl)
+    - Name: form
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Form)
+    - Name: volGauge
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Gauge)
+    - Name: pitchGauge
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Gauge)
+    - Name: tempoGauge
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Gauge)
+- Operations:
+    - Name: PlayMediaScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - INTERNAL_CLASS (InputStream)
+       - BASIC_TYPE (String)
+       - CUSTOM_CLASS (AbstractController)
+    - Name: itemStateChanged
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Item)
+    - Name: startPlay
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: pausePlay
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: paint
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Graphics)
+- Relations:
+    - Flow: In
+      Type: Association
+      With: MusicPlayController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+
+SelectTypeOfMedia (NORMAL)
+- Attributes:
+    - Name: exitCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: selectCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+- Operations:
+    - Name: SelectTypeOfMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: initMenu
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: deleteAll
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: repaintListMedias
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: In
+      Type: Association
+      With: ScreenSingleton
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+
+ImageMediaAccessor (NORMAL)
+- Attributes:
+    - Name: converter
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (MediaUtil)
+- Operations:
+    - Name: ImageMediaAccessor
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: resetRecordStore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getMediaArrayOfByte
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getByteFromMediaInfo
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+    - Name: getMediaFromBytes
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: addImageData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (String)
+    - Name: loadSingleImageFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Image)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: ImageAlbumData
+    - Flow: Out
+      Type: Generalization
+      With: MediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: MediaUtil
+    - Flow: Out
+      Type: Dependency
+      With: ImagePathNotValidException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidArrayFormatException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageFormatException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+
+ImageAlbumData (NORMAL)
+- Operations:
+    - Name: ImageAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: getImageFromRecordStore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Image)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+    - Flow: Out
+      Type: Generalization
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: ImageMediaAccessor
+
+MultiMediaData (NORMAL)
+- Attributes:
+    - Name: typemedia
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+- Operations:
+    - Name: MultiMediaData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+       - BASIC_TYPE (String)
+    - Name: getTypeMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setTypeMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaUtil
+    - Flow: Out
+      Type: Generalization
+      With: MediaData
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: VideoMediaAccessor
+
+MusicAlbumData (NORMAL)
+- Operations:
+    - Name: MusicAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: getMusicFromRecordStore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (InputStream)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Generalization
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+
+MusicMediaAccessor (NORMAL)
+- Attributes:
+    - Name: converter
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (MusicMediaUtil)
+- Operations:
+    - Name: MusicMediaAccessor
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: getMediaArrayOfByte
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getByteFromMediaInfo
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+    - Name: getMediaFromBytes
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: resetRecordStore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: MediaAccessor
+    - Flow: Out
+      Type: Association
+      With: MusicMediaUtil
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: ImagePathNotValidException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidArrayFormatException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageFormatException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: MusicMediaUtil
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: In
+      Type: Dependency
+      With: MusicAlbumData
+    - Flow: Out
+      Type: Dependency
+      With: MultiMediaData
+    - Flow: In
+      Type: Generalization
+      With: VideoMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: VideoMediaAccessor
+
+MusicMediaUtil (NORMAL)
+- Operations:
+    - Name: getBytesFromMediaInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+    - Name: getMultiMediaInfoFromBytes
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: MediaUtil
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidArrayFormatException
+    - Flow: In
+      Type: Association
+      With: MusicMediaAccessor
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: MultiMediaData
+
+BaseMessaging (ABSTRACT)
+- Operations:
+    - Name: sendImage (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: receiveImage (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+    - Name: cleanUpConnections (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (MessageConnection)
+- Relations:
+    - Flow: In
+      Type: Generalization
+      With: SmsMessaging
+
+NetworkScreen (NORMAL)
+- Attributes:
+    - Name: recPhoneNum
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TextField)
+    - Name: rPort
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: ok
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: cancel
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+- Operations:
+    - Name: NetworkScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getRecPhoneNum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getRecPort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: SmsSenderController
+    - Flow: In
+      Type: Association
+      With: SmsSenderController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+
+SmsMessaging (NORMAL)
+- Attributes:
+    - Name: smsSendPort
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: smsReceivePort
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: destinationPhoneNumber
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: smsProtocolPrefix
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: smsConn
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (MessageConnection)
+    - Name: msg
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Message)
+    - Name: connections
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String[])
+- Operations:
+    - Name: SmsMessaging
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: SmsMessaging
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: sendImage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: receiveImage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+    - Name: cleanUpConnections
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (MessageConnection)
+    - Name: cleanUpReceiverConnections
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getDestinationPhoneNumber
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setDestinationPhoneNumber
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getSmsSendPort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setSmsSendPort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getSmsReceivePort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setSmsReceivePort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: SmsSenderThread
+    - Flow: In
+      Type: Dependency
+      With: SmsReceiverThread
+    - Flow: Out
+      Type: Generalization
+      With: BaseMessaging
+
+SmsReceiverController (NORMAL)
+- Attributes:
+    - Name: incomingImageData
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+- Operations:
+    - Name: SmsReceiverController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - CUSTOM_CLASS (AlbumListScreen)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: setIncommingData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: SmsReceiverThread
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Dependency
+      With: PhotoViewScreen
+    - Flow: Out
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: In
+      Type: Association
+      With: SmsReceiverThread
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+
+SmsReceiverThread (NORMAL)
+- Attributes:
+    - Name: connections
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (String[])
+    - Name: smsPort
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: smsconn
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (MessageConnection)
+    - Name: msg
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Message)
+    - Name: senderAddress
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: acceptPhotoCommand
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: rejectPhotoCommand
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: errorNotice
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: controller
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (SmsReceiverController)
+- Operations:
+    - Name: SmsReceiverThread
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - CUSTOM_CLASS (AlbumListScreen)
+       - CUSTOM_CLASS (SmsReceiverController)
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Dependency
+      With: SmsReceiverController
+    - Flow: Out
+      Type: Association
+      With: SmsReceiverController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: SmsMessaging
+
+SmsSenderController (NORMAL)
+- Attributes:
+    - Name: imageName
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: networkScreen
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (NetworkScreen)
+- Operations:
+    - Name: SmsSenderController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - CUSTOM_CLASS (AlbumListScreen)
+       - BASIC_TYPE (String)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: Out
+      Type: Dependency
+      With: SmsSenderThread
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: NetworkScreen
+    - Flow: Out
+      Type: Association
+      With: NetworkScreen
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+
+SmsSenderThread (NORMAL)
+- Attributes:
+    - Name: smsPort
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: destinationAddress
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: messageText
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: binData
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+- Operations:
+    - Name: SmsSenderThread
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: setBinaryData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: getSmsPort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setSmsPort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getMessageText
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setMessageText
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: SmsSenderController
+    - Flow: Out
+      Type: Dependency
+      With: SmsMessaging
+
+AbstractController (ABSTRACT)
+- Attributes:
+    - Name: nextController
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (ControllerInterface)
+    - Name: albumData
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: albumListScreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (List)
+    - Name: midlet
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: CUSTOM_CLASS (MainUIMidlet)
+- Operations:
+    - Name: AbstractController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - INTERNAL_CLASS (List)
+    - Name: commandAction
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+       - INTERNAL_CLASS (Displayable)
+    - Name: setCurrentScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Displayable)
+    - Name: getCurrentStoreName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getNextController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (ControllerInterface)
+    - Name: setAlbumListAsCurrentScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Alert)
+    - Name: setCurrentScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Displayable)
+       - INTERNAL_CLASS (Alert)
+    - Name: getCurrentScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Displayable)
+    - Name: getAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (AlbumData)
+    - Name: setAlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: setNextController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (ControllerInterface)
+    - Name: getAlbumListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (List)
+    - Name: postCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+- Relations:
+    - Flow: Out
+      Type: Realization
+      With: ControllerInterface
+    - Flow: Out
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Generalization
+      With: AlbumController
+    - Flow: In
+      Type: Generalization
+      With: MediaListController
+    - Flow: Out
+      Type: Association
+      With: ControllerInterface
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Generalization
+      With: PhotoViewController
+    - Flow: In
+      Type: Generalization
+      With: BaseController
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: In
+      Type: Generalization
+      With: SmsSenderController
+    - Flow: In
+      Type: Generalization
+      With: SmsReceiverController
+    - Flow: In
+      Type: Generalization
+      With: MusicPlayController
+    - Flow: In
+      Type: Generalization
+      With: SelectMediaController
+    - Flow: In
+      Type: Generalization
+      With: PlayVideoController
+    - Flow: In
+      Type: Generalization
+      With: VideoCaptureController
+
+AlbumController (NORMAL)
+- Operations:
+    - Name: AlbumController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - CUSTOM_CLASS (AlbumListScreen)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: resetMediaData
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: goToPreviousScreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: Out
+      Type: Dependency
+      With: NewLabelScreen
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidPhotoAlbumNameException
+    - Flow: Out
+      Type: Dependency
+      With: BaseController
+    - Flow: Out
+      Type: Dependency
+      With: AbstractController
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+
+MediaListController (NORMAL)
+- Operations:
+    - Name: MediaListController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - CUSTOM_CLASS (AlbumListScreen)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: showMediaList
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Boolean)
+       - BASIC_TYPE (Boolean)
+    - Name: exchange
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (MediaData[])
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: bubbleSort
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (MediaData[])
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: Out
+      Type: Dependency
+      With: MediaListScreen
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: UnavailablePhotoAlbumException
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: Out
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Generalization
+      With: MediaController
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: Out
+      Type: Dependency
+      With: ImageAlbumData
+    - Flow: Out
+      Type: Dependency
+      With: VideoAlbumData
+    - Flow: Out
+      Type: Dependency
+      With: MusicAlbumData
+
+PhotoViewController (NORMAL)
+- Attributes:
+    - Name: imageName
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: cpVideoScreen
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (CaptureVideoScreen)
+- Operations:
+    - Name: PhotoViewController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - CUSTOM_CLASS (AlbumListScreen)
+       - BASIC_TYPE (String)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: getCpVideoScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (CaptureVideoScreen)
+    - Name: setCpVideoScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (CaptureVideoScreen)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: ImagePathNotValidException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: AddMediaToAlbum
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: Out
+      Type: Dependency
+      With: MediaController
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: Out
+      Type: Dependency
+      With: PhotoViewScreen
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: In
+      Type: Dependency
+      With: SmsReceiverController
+    - Flow: Out
+      Type: Dependency
+      With: CaptureVideoScreen
+    - Flow: Out
+      Type: Association
+      With: CaptureVideoScreen
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+
+ScreenSingleton (NORMAL)
+- Attributes:
+    - Name: currentScreenName
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: currentStoreName
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: instance
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: CUSTOM_CLASS (ScreenSingleton)
+    - Name: mainScreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (SelectTypeOfMedia)
+- Operations:
+    - Name: ScreenSingleton
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: getCurrentScreenName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setCurrentScreenName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getCurrentStoreName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setCurrentStoreName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getInstance
+      Visibility: PUBLIC
+      Scope: Classifier
+      Return Type: CUSTOM_CLASS (ScreenSingleton)
+    - Name: getMainMenu
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (SelectTypeOfMedia)
+    - Name: setMainMenu
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (SelectTypeOfMedia)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: ScreenSingleton
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Association
+      With: ScreenSingleton
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+    - Flow: In
+      Type: Dependency
+      With: AbstractController
+    - Flow: In
+      Type: Dependency
+      With: SmsReceiverController
+    - Flow: Out
+      Type: Association
+      With: SelectTypeOfMedia
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+    - Flow: In
+      Type: Dependency
+      With: VideoCaptureController
+
+MediaController (NORMAL)
+- Attributes:
+    - Name: media
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (MediaData)
+    - Name: screen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (NewLabelScreen)
+- Operations:
+    - Name: updateMedia
+      Visibility: PACKAGE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+    - Name: showImage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: MediaController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - CUSTOM_CLASS (AlbumListScreen)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: getSelectedMediaName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (NewLabelScreen)
+    - Name: setScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (NewLabelScreen)
+    - Name: goToPreviousScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: getMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData)
+    - Name: setMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+    - Name: incrementCountViews
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: playMultiMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: playVideoMedia
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: In
+      Type: Association
+      With: MediaData
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: MediaData
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: Out
+      Type: Dependency
+      With: NewLabelScreen
+    - Flow: Out
+      Type: Association
+      With: NewLabelScreen
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: BaseController
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: ImagePathNotValidException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: AddMediaToAlbum
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: PhotoViewScreen
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: Out
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+    - Flow: Out
+      Type: Generalization
+      With: MediaListController
+    - Flow: Out
+      Type: Dependency
+      With: AbstractController
+    - Flow: Out
+      Type: Dependency
+      With: SmsSenderController
+    - Flow: Out
+      Type: Dependency
+      With: MusicAlbumData
+    - Flow: Out
+      Type: Dependency
+      With: MultiMediaData
+    - Flow: Out
+      Type: Dependency
+      With: ImageAlbumData
+    - Flow: Out
+      Type: Dependency
+      With: PlayVideoScreen
+    - Flow: Out
+      Type: Dependency
+      With: PlayVideoController
+    - Flow: Out
+      Type: Dependency
+      With: CaptureVideoScreen
+    - Flow: Out
+      Type: Dependency
+      With: VideoCaptureController
+    - Flow: Out
+      Type: Dependency
+      With: VideoAlbumData
+
+BaseThread (NORMAL)
+- Operations:
+    - Name: BaseThread
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+
+BaseController (NORMAL)
+- Operations:
+    - Name: BaseController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+       - CUSTOM_CLASS (AlbumListScreen)
+    - Name: init
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: goToPreviousScreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: Out
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+    - Flow: Out
+      Type: Generalization
+      With: AbstractController
+    - Flow: In
+      Type: Association
+      With: SelectMediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: SelectMediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: SelectMediaController
+    - Flow: In
+      Type: Association
+      With: SelectMediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+
+ControllerInterface (INTERFACE)
+- Operations:
+    - Name: postCommand (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+    - Name: handleCommand (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+- Relations:
+    - Flow: In
+      Type: Realization
+      With: AbstractController
+    - Flow: In
+      Type: Association
+      With: AbstractController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+
+AlbumData (NORMAL)
+- Attributes:
+    - Name: mediaAccessor
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: CUSTOM_CLASS (MediaAccessor)
+- Operations:
+    - Name: getAlbumNames
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String[])
+    - Name: getMedias
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: createNewAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: deleteAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: addNewMediaToAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: deleteMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: resetMediaData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: addMediaData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+       - BASIC_TYPE (String)
+    - Name: getMediaInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: loadMediaDataFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: updateMediaInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+       - CUSTOM_CLASS (MediaData)
+    - Name: loadMediaBytesFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+    - Name: addVideoData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Byte[])
+    - Name: addImageData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Byte[])
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewScreen
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: In
+      Type: Association
+      With: MediaAccessor
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: MediaAccessor
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidPhotoAlbumNameException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: UnavailablePhotoAlbumException
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+    - Flow: In
+      Type: Association
+      With: AbstractController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: SmsSenderController
+    - Flow: In
+      Type: Dependency
+      With: SmsReceiverController
+    - Flow: In
+      Type: Generalization
+      With: MusicAlbumData
+    - Flow: In
+      Type: Generalization
+      With: ImageAlbumData
+    - Flow: In
+      Type: Association
+      With: SelectMediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: SelectMediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+    - Flow: In
+      Type: Dependency
+      With: VideoCaptureController
+    - Flow: In
+      Type: Generalization
+      With: VideoAlbumData
+    - Flow: In
+      Type: Association
+      With: SelectMediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: Out
+      Type: Dependency
+      With: VideoMediaAccessor
+    - Flow: Out
+      Type: Dependency
+      With: ImageMediaAccessor
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+
+MediaAccessor (NORMAL)
+- Attributes:
+    - Name: album_label
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: info_label
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: default_album_name
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: albumNames
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: BASIC_TYPE (String[])
+    - Name: mediaRS
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (RecordStore)
+    - Name: mediaInfoRS
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (RecordStore)
+    - Name: mediaInfoTable
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (HashTable)
+- Operations:
+    - Name: MediaAccessor
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: loadAlbums
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: resetRecordStore (Abstract)
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+    - Name: addMediaData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: loadMediaDataFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: updateMediaInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+       - CUSTOM_CLASS (MediaData)
+    - Name: getMediaInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: setMediaInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - CUSTOM_CLASS (MediaData)
+    - Name: loadMediaBytesFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+    - Name: deleteSingleMediaFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: createNewAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: deleteAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getAlbumNames
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String[])
+    - Name: addMediaData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+       - BASIC_TYPE (String)
+    - Name: getByteFromMediaInfo (Abstract)
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+    - Name: getMediaArrayOfByte (Abstract)
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getMediaFromBytes (Abstract)
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: addMediaArrayOfBytes
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Byte[])
+    - Name: getMediaInfoTable
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (HashTable)
+    - Name: setMediaInfoTable
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (HashTable)
+    - Name: removeRecords
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: Out
+      Type: Dependency
+      With: ImagePathNotValidException
+    - Flow: Out
+      Type: Dependency
+      With: ImageNotFoundException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidPhotoAlbumNameException
+    - Flow: Out
+      Type: Dependency
+      With: PersistenceMechanismException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageFormatException
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: In
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+    - Flow: In
+      Type: Dependency
+      With: SmsSenderController
+    - Flow: In
+      Type: Generalization
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Generalization
+      With: ImageMediaAccessor
+
+MediaData (NORMAL)
+- Attributes:
+    - Name: recordId
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: foreignRecordId
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: parentAlbumName
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: mediaLabel
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: numberOfViews
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: favorite
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+- Operations:
+    - Name: MediaData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: getRecordId
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: setRecordId
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: getForeignRecordId
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: setForeignRecordId
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: getParentAlbumName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setParentAlbumName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: increaseNumberOfViews
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getNumberOfViews
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: setNumberOfViews
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: isFavorite
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: setFavorite
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: toggleFavorite
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getMediaLabel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setMediaLabel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaUtil
+    - Flow: In
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Association
+      With: MediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: In
+      Type: Association
+      With: MediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+    - Flow: In
+      Type: Dependency
+      With: SmsSenderController
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaUtil
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Generalization
+      With: MultiMediaData
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+    - Flow: In
+      Type: Dependency
+      With: VideoAlbumData
+
+MainUIMidlet (NORMAL)
+- Attributes:
+    - Name: musicRootController
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (BaseController)
+    - Name: musicModel
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: imageRootController
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (BaseController)
+    - Name: imageModel
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: videoModel
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: videoRootController
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (BaseController)
+- Operations:
+    - Name: MainUIMidlet
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: startApp
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: pauseApp
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: destroyApp
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+- Relations:
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: BaseController
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: ScreenSingleton
+    - Flow: Out
+      Type: Dependency
+      With: MediaListController
+    - Flow: Out
+      Type: Dependency
+      With: AlbumController
+    - Flow: In
+      Type: Association
+      With: AbstractController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: Out
+      Type: Dependency
+      With: SmsReceiverThread
+    - Flow: Out
+      Type: Dependency
+      With: SmsReceiverController
+    - Flow: Out
+      Type: Dependency
+      With: MusicAlbumData
+    - Flow: Out
+      Type: Dependency
+      With: ImageAlbumData
+    - Flow: Out
+      Type: Dependency
+      With: SelectTypeOfMedia
+    - Flow: Out
+      Type: Dependency
+      With: SelectMediaController
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: VideoAlbumData
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+
+AddMediaToAlbum (NORMAL)
+- Attributes:
+    - Name: labeltxt
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TextField)
+    - Name: photopathtxt
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TextField)
+    - Name: ok
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: cancel
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: CapturedMedia
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+    - Name: itemType
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TextField)
+- Operations:
+    - Name: AddMediaToAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getItemName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getPath
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setItemName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: setLabePath
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getItemType
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getCapturedMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+    - Name: setCapturedMedia
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+    - Flow: In
+      Type: Dependency
+      With: VideoCaptureController
+    - Flow: In
+      Type: Association
+      With: VideoCaptureController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+
+AlbumListScreen (NORMAL)
+- Attributes:
+    - Name: exitCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: exitCommand2
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: selectCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: createAlbumCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: deleteAlbumCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: resetCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+- Operations:
+    - Name: AlbumListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: initMenu
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: deleteAll
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: repaintListAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String[])
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+    - Flow: In
+      Type: Dependency
+      With: SmsReceiverController
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+    - Flow: In
+      Type: Dependency
+      With: VideoCaptureController
+
+NewLabelScreen (NORMAL)
+- Attributes:
+    - Name: labelName
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TextField)
+    - Name: ok
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: cancel
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: formType
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: NEW_ALBUM
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: LABEL_PHOTO
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: NewLabelScreen 
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+    - Name: getLabelName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getFormType
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: setFormType
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Association
+      With: MediaController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+
+MediaListScreen (NORMAL)
+- Attributes:
+    - Name: viewCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: addCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: playCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: deleteCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: backCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: editLabelCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: sortCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: favoriteCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: viewFavoritesCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: SHOWPHOTO
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: PLAYMUSIC
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: PLAYVIDEO
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: typeOfScreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: playVideoCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: captureVideoCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: capturePhotoCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+- Operations:
+    - Name: MediaListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: initMenu
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+
+PhotoViewScreen (NORMAL)
+- Attributes:
+    - Name: image
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Image)
+    - Name: backCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: copyCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: smscopyCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: model
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: fromSMS
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: byteImage
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (Byte[])
+- Operations:
+    - Name: PhotoViewScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Image)
+    - Name: paint
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Graphics)
+    - Name: getImage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+    - Name: isFromSMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+    - Name: setFromSMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+    - Name: setImage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+- Relations:
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: SmsReceiverController
+
+Constants (NORMAL)
+- Attributes:
+    - Name: ALBUMLIST_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: IMAGE_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: IMAGELIST_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: NEWALBUM_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: CONFIRMDELETEALBUM_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: ADDPHOTOTOALBUM_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: SCREEN_WIDTH
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: SCREEN_HEIGHT
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: MediaListController
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+    - Flow: In
+      Type: Dependency
+      With: SmsReceiverController
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+
+MediaUtil (NORMAL)
+- Attributes:
+    - Name: DELIMITER
+      Visibility: PROTECTED
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: endIndex
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+- Operations:
+    - Name: readImageAsByteArray
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getImageInfoFromBytes
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (MediaData)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: getBytesFromImageInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - CUSTOM_CLASS (MediaData)
+- Relations:
+    - Flow: Out
+      Type: Dependency
+      With: ImagePathNotValidException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidArrayFormatException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageDataException
+    - Flow: Out
+      Type: Dependency
+      With: InvalidImageFormatException
+    - Flow: Out
+      Type: Dependency
+      With: MediaData
+    - Flow: In
+      Type: Generalization
+      With: MusicMediaUtil
+    - Flow: In
+      Type: Dependency
+      With: ImageMediaAccessor
+
+ImageNotFoundException (NORMAL)
+- Attributes:
+    - Name: cause
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Throwable)
+- Operations:
+    - Name: ImageNotFoundException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: ImageNotFoundException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: ImageNotFoundException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+    - Name: getCause
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: SmsSenderController
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: MusicAlbumData
+    - Flow: In
+      Type: Dependency
+      With: ImageAlbumData
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+    - Flow: In
+      Type: Dependency
+      With: VideoMediaAccessor
+
+ImagePathNotValidException (NORMAL)
+- Attributes:
+    - Name: cause
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Throwable)
+- Operations:
+    - Name: ImagePathNotValidException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: ImagePathNotValidException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: ImagePathNotValidException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+    - Name: getCause
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: InvalidImageDataException
+    - Flow: In
+      Type: Dependency
+      With: MediaUtil
+    - Flow: In
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: ImageMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+
+InvalidArrayFormatException (NORMAL)
+- Operations:
+    - Name: InvalidArrayFormatException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: InvalidArrayFormatException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: InvalidArrayFormatException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: InvalidImageDataException
+    - Flow: In
+      Type: Dependency
+      With: MediaUtil
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaUtil
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: ImageMediaAccessor
+
+InvalidImageDataException (NORMAL)
+- Attributes:
+    - Name: cause
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Throwable)
+- Operations:
+    - Name: InvalidImageDataException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: InvalidImageDataException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: InvalidImageDataException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+    - Name: getCause
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: In
+      Type: Generalization
+      With: InvalidImageFormatException
+    - Flow: In
+      Type: Generalization
+      With: InvalidArrayFormatException
+    - Flow: In
+      Type: Generalization
+      With: ImagePathNotValidException
+    - Flow: In
+      Type: Dependency
+      With: MediaUtil
+    - Flow: In
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaUtil
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: ImageMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+
+InvalidImageFormatException (NORMAL)
+- Operations:
+    - Name: InvalidImageFormatException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: InvalidImageFormatException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: InvalidImageFormatException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: Out
+      Type: Generalization
+      With: InvalidImageDataException
+    - Flow: In
+      Type: Dependency
+      With: MediaUtil
+    - Flow: In
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: ImageMediaAccessor
+
+InvalidPhotoAlbumNameException (NORMAL)
+- Operations:
+    - Name: InvalidPhotoAlbumNameException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: InvalidPhotoAlbumNameException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+
+PersistenceMechanismException (NORMAL)
+- Attributes:
+    - Name: cause
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Throwable)
+- Operations:
+    - Name: PersistenceMechanismException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: PersistenceMechanismException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: PersistenceMechanismException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+    - Name: getCause
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: MediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+    - Flow: In
+      Type: Dependency
+      With: MediaController
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewController
+    - Flow: In
+      Type: Dependency
+      With: AlbumController
+    - Flow: In
+      Type: Dependency
+      With: SmsSenderController
+    - Flow: In
+      Type: Dependency
+      With: MusicMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: MusicAlbumData
+    - Flow: In
+      Type: Dependency
+      With: ImageAlbumData
+    - Flow: In
+      Type: Dependency
+      With: ImageMediaAccessor
+    - Flow: In
+      Type: Dependency
+      With: MusicPlayController
+    - Flow: In
+      Type: Dependency
+      With: PlayVideoController
+
+UnavailablePhotoAlbumException (NORMAL)
+- Attributes:
+    - Name: cause
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Throwable)
+- Operations:
+    - Name: UnavailablePhotoAlbumException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: UnavailablePhotoAlbumException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: UnavailablePhotoAlbumException
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Throwable)
+    - Name: getCause
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Throwable)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+    - Flow: In
+      Type: Dependency
+      With: MediaListController

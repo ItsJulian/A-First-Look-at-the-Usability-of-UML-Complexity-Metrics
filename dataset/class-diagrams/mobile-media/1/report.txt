@@ -1,0 +1,1038 @@
+BaseThread (NORMAL)
+- Operations:
+    - Name: BaseThread
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+
+BaseController (NORMAL)
+- Attributes:
+    - Name: display
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Display)
+    - Name: currentScreenName
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: currentStoreName
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: midlet
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (MainUIMidlet)
+    - Name: model
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+    - Name: nextController
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (BaseController)
+    - Name: albumListScreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumListScreen)
+- Operations:
+    - Name: BaseController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+    - Name: BaseController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (MainUIMidlet)
+       - CUSTOM_CLASS (AlbumData)
+    - Name: init
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: handleCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+       - INTERNAL_CLASS (Displayable)
+    - Name: postCommand
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+       - INTERNAL_CLASS (Displayable)
+    - Name: commandAction
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+       - INTERNAL_CLASS (Displayable)
+    - Name: resetImageData
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: setCurrentScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Displayable)
+    - Name: setCurrentScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Alert)
+       - INTERNAL_CLASS (Displayable)
+    - Name: getCurrentScreenName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Displayable)
+    - Name: goToPreviousScreen
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+    - Name: showImage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: showImageList
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getSelectedImageName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setCurrentScreenName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getNextController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (BaseController)
+    - Name: setNextController
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - CUSTOM_CLASS (BaseController)
+    - Name: getModel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (AlbumData)
+    - Name: getCurrentStoreName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: Out
+      Type: Realization
+      With: ControllerInterface
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: AlbumListScreen
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: MainUIMidlet
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: AddPhotoToAlbum
+    - Flow: Out
+      Type: Dependency
+      With: AlbumListScreen
+    - Flow: Out
+      Type: Dependency
+      With: NewAlbumScreen
+    - Flow: Out
+      Type: Dependency
+      With: PhotoListScreen
+    - Flow: Out
+      Type: Dependency
+      With: PhotoViewScreen
+    - Flow: Out
+      Type: Dependency
+      With: Constants
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+
+ControllerInterface (INTERFACE)
+- Operations:
+    - Name: postCommand (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+       - INTERNAL_CLASS (Displayable)
+    - Name: handleCommand (Abstract)
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - INTERNAL_CLASS (Command)
+       - INTERNAL_CLASS (Displayable)
+- Relations:
+    - Flow: In
+      Type: Realization
+      With: BaseController
+
+AlbumData (NORMAL)
+- Attributes:
+    - Name: imageInfoTable
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: INTERNAL_CLASS (Hashtable)
+    - Name: existingRecords
+      Visibility: PUBLIC
+      Scope: Instance
+      Type: BASIC_TYPE (Boolean)
+    - Name: imageAccessor
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (ImageAccessor)
+- Operations:
+    - Name: AlbumData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: getAlbumNames
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String[])
+    - Name: getImageNames
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: createNewPhotoAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: deletePhotoAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getImageFromRecordStore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Image)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: addNewPhotoToAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: deleteImage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: resetImageData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: getImageInfoTable
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Hashtable)
+    - Name: setImageInfoTable
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Hashtable)
+- Relations:
+    - Flow: In
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: MainUIMidlet
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: PhotoViewScreen
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Association
+      With: ImageAccessor
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: ImageAccessor
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: In
+      Type: Dependency
+      With: ImageAccessor
+    - Flow: Out
+      Type: Dependency
+      With: ImageAccessor
+    - Flow: Out
+      Type: Dependency
+      With: ImageData
+    - Flow: In
+      Type: Dependency
+      With: PhotoViewScreen
+    - Flow: In
+      Type: Dependency
+      With: MainUIMidlet
+
+ImageAccessor (NORMAL)
+- Attributes:
+    - Name: ALBUM_LABEL
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: INFO_LABEL
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: DEFAULT_ALBUM_NAME
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: IMAGE_LABEL
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: albumNames
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: BASIC_TYPE (String[])
+    - Name: imageRS
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (RecordStore)
+    - Name: imageInfoRS
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (RecordStore)
+    - Name: model
+      Visibility: PROTECTED
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+- Operations:
+    - Name: ImageAccessor
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+    - Name: loadAlbums
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: resetImageRecordStore
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: addImageData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: loadImageDataFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: updateImageInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - CUSTOM_CLASS (ImageData)
+       - CUSTOM_CLASS (ImageData)
+    - Name: getImageInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (ImageData)
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: setImageInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+       - CUSTOM_CLASS (ImageData)
+    - Name: loadSingleImageFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: INTERNAL_CLASS (Image)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+    - Name: loadImageBytesFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+    - Name: deleteSingleImageFromRMS
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Boolean)
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: createNewPhotoAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: deletePhotoAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getAlbumNames
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String[])
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: In
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: ImageData
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+
+ImageData (NORMAL)
+- Attributes:
+    - Name: recordId
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: foreignRecordId
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (Int)
+    - Name: parentAlbumName
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: imageLabel
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+- Operations:
+    - Name: ImageData
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (String)
+    - Name: getRecordId
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: setRecordId
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: getForeignRecordId
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Int)
+    - Name: setForeignRecordId
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: getParentAlbumName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setParentAlbumName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getImageLabel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: setImageLabel
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: ImageUtil
+    - Flow: In
+      Type: Dependency
+      With: ImageAccessor
+    - Flow: In
+      Type: Dependency
+      With: AlbumData
+
+MainUIMidlet (NORMAL)
+- Attributes:
+    - Name: rootController
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (BaseController)
+    - Name: model
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+- Operations:
+    - Name: MainUIMidlet
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: startApp
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: pauseApp
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: destroyApp
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Boolean)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: Out
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: In
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 1..1
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+    - Flow: Out
+      Type: Dependency
+      With: BaseController
+
+AddPhotoToAlbum (NORMAL)
+- Attributes:
+    - Name: labeltxt
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TextField)
+    - Name: photopathtxt
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TextField)
+    - Name: ok
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: cancel
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+- Operations:
+    - Name: AddPhotoToAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getPhotoName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+    - Name: getPath
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+
+AlbumListScreen (NORMAL)
+- Attributes:
+    - Name: exitCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: selectCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: createAlbumCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: deleteAlbumCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: resetCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+- Operations:
+    - Name: AlbumListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: AlbumListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+    - Name: AlbumListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String[])
+       - INTERNAL_CLASS (Image[])
+    - Name: initMenu
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: deleteAll
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: repaintListAlbum
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (String[])
+- Relations:
+    - Flow: In
+      Type: Association
+      With: BaseController
+      Multiplicity: 
+        - From: 1..1
+        - To: : 0..0
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+
+NewAlbumScreen (NORMAL)
+- Attributes:
+    - Name: albumName
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (TextField)
+    - Name: ok
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+    - Name: cancel
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Command)
+- Operations:
+    - Name: NewAlbumScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: NewAlbumScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - INTERNAL_CLASS (Item[])
+    - Name: getAlbumName
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (String)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+
+PhotoListScreen (NORMAL)
+- Attributes:
+    - Name: viewCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: addCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: deleteCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: backCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+- Operations:
+    - Name: PhotoListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: PhotoListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+    - Name: PhotoListScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - BASIC_TYPE (String)
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (String[])
+       - INTERNAL_CLASS (Image[])
+    - Name: initMenu
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+
+PhotoViewScreen (NORMAL)
+- Attributes:
+    - Name: imageName
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: BASIC_TYPE (String)
+    - Name: image
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Image)
+    - Name: backCommand
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: INTERNAL_CLASS (Command)
+    - Name: model
+      Visibility: PACKAGE
+      Scope: Instance
+      Type: CUSTOM_CLASS (AlbumData)
+- Operations:
+    - Name: PhotoViewScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Image)
+    - Name: PhotoViewScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - CUSTOM_CLASS (AlbumData)
+       - BASIC_TYPE (String)
+    - Name: loadImage
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+    - Name: paint
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Graphics)
+- Relations:
+    - Flow: Out
+      Type: Association
+      With: AlbumData
+      Multiplicity: 
+        - From: 0..0
+        - To: : 1..1
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+    - Flow: Out
+      Type: Dependency
+      With: AlbumData
+
+SplashScreen (NORMAL)
+- Attributes:
+    - Name: display
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Display)
+    - Name: next
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Displayable)
+    - Name: timer
+      Visibility: PRIVATE
+      Scope: Instance
+      Type: INTERNAL_CLASS (Timer)
+- Operations:
+    - Name: SplashScreen
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+      Parameters: 
+       - INTERNAL_CLASS (Display)
+       - INTERNAL_CLASS (Displayable)
+    - Name: keyPressed
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+    - Name: paint
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - INTERNAL_CLASS (Graphics)
+    - Name: pointerPressed
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+      Parameters: 
+       - BASIC_TYPE (Int)
+       - BASIC_TYPE (Int)
+    - Name: showNotify
+      Visibility: PROTECTED
+      Scope: Instance
+      Return Type: VOID
+    - Name: dismiss
+      Visibility: PRIVATE
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: In
+      Type: Containment
+      With: CountDown
+    - Flow: In
+      Type: Dependency
+      With: CountDown
+    - Flow: Out
+      Type: Dependency
+      With: CountDown
+
+CountDown (NORMAL)
+- Operations:
+    - Name: run
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: VOID
+- Relations:
+    - Flow: Out
+      Type: Containment
+      With: SplashScreen
+    - Flow: Out
+      Type: Dependency
+      With: SplashScreen
+    - Flow: In
+      Type: Dependency
+      With: SplashScreen
+
+Constants (NORMAL)
+- Attributes:
+    - Name: ALBUMLIST_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: IMAGE_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: IMAGELIST_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: NEWALBUM_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: CONFIRMDELETEALBUM_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: ADDPHOTOTOALBUM_SCREEN
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+    - Name: SCREEN_WIDTH
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+    - Name: SCREEN_HEIGHT
+      Visibility: PUBLIC
+      Scope: Classifier
+      Type: BASIC_TYPE (Int)
+- Relations:
+    - Flow: In
+      Type: Dependency
+      With: BaseController
+
+ImageUtil (NORMAL)
+- Attributes:
+    - Name: DELIMITER
+      Visibility: PRIVATE
+      Scope: Classifier
+      Type: BASIC_TYPE (String)
+- Operations:
+    - Name: ImageUtil
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CONSTRUCTOR
+    - Name: readImageAsByteArray
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - BASIC_TYPE (String)
+    - Name: getImageInfoFromBytes
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: CUSTOM_CLASS (ImageData)
+      Parameters: 
+       - BASIC_TYPE (Byte[])
+    - Name: getBytesFromImageInfo
+      Visibility: PUBLIC
+      Scope: Instance
+      Return Type: BASIC_TYPE (Byte[])
+      Parameters: 
+       - CUSTOM_CLASS (ImageData)
+- Relations:
+    - Flow: Out
+      Type: Dependency
+      With: ImageData
