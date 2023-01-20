@@ -1,6 +1,6 @@
-# Practical Validation of UML Complexity Metrics
+# A First Look at the Usability of UML Complexity Metrics
 
-In this repository, you can find the dataset used in the research titled 'Practical Validation of UML Complexity Metrics'.
+In this repository, you can find the dataset used in the research titled 'A First Look at the Usability of UML Complexity Metrics'.
 
 *This research is executed by Julian Meurer, Sjoerd Plat en Joep Overmars and supervised by Tannaz Zameni. Contact information of the researchers and supervisor can be found at the end of this file.*
 
