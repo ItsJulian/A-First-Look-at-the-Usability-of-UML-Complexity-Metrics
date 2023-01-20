@@ -43,6 +43,13 @@ The metrics are calculated by well-researched and widely used tools like [SonarQ
 
 [Click Here](./dataset/software-metrics/) to go to the software metrics.
 
+## Metric Correlation
+This dataset also contains the calculated correlation between the diagram and software metrics (as a CSV file) for both [Java Websockets](https://github.com/TooTallNate/Java-WebSocket) and [Mobile Media](https://github.com/julioserafim/MobileMedia) codebases. 
+
+The metrics are calculated using the python package [Pandas](https://pandas.pydata.org/) and are based upon the [Software](./dataset/software-metrics/) and [Diagram Metrics](./dataset/diagram-metrics/).
+
+[Click Here](./dataset/metrics-correlation/) to go to the metric correlation.
+
 # Contact
 Below you will find the contact information of the researchers and supervisor.
 
