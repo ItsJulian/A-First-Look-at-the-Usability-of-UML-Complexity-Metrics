@@ -8,13 +8,13 @@ The `.analyzer.txt` files (included for each state diagram file) are created by 
 # Content
 Using the table below, it is possible to directly go to the state diagram and/or analyzer report for a specific version.
 
-| Repository        | Version   | State Diagram                                           | Analyzer Report                                          |
-| ---               | ---       | ---                                                     | ---                                                      |
-| Mobile Media      | 1         | [State Diagram](./mobile-media/1/diagram.xml)           | [Analyzer Report](./mobile-media/1/report.txt)           |
-| Mobile Media      | 2         | [State Diagram](./mobile-media/2/diagram.xml)           | [Analyzer Report](./mobile-media/2/report.txt)           |
-| Mobile Media      | 3         | [State Diagram](./mobile-media/3/diagram.xml)           | [Analyzer Report](./mobile-media/3/report.txt)           |
-| Mobile Media      | 4         | [State Diagram](./mobile-media/4/diagram.xml)           | [Analyzer Report](./mobile-media/4/report.txt)           |
-| Mobile Media      | 5         | [State Diagram](./mobile-media/5/diagram.xml)           | [Analyzer Report](./mobile-media/5/report.txt)           |
-| Mobile Media      | 6         | [State Diagram](./mobile-media/6/diagram.xml)           | [Analyzer Report](./mobile-media/6/report.txt)           |
-| Mobile Media      | 7         | [State Diagram](./mobile-media/7/diagram.xml)           | [Analyzer Report](./mobile-media/7/report.txt)           |
-| Mobile Media      | 8         | [State Diagram](./mobile-media/8/diagram.xml)           | [Analyzer Report](./mobile-media/8/report.txt)           |
+| Repository        | Version   | Preview (Image)                               |State Diagram                                           | Analyzer Report                                          |
+| ---               | ---       | ---                                           |---                                                     | ---                                                      |
+| Mobile Media      | 1         | [Preview](./mobile-media/1/transparant.png)   |[State Diagram](./mobile-media/1/diagram.xml)           | [Analyzer Report](./mobile-media/1/report.txt)           |
+| Mobile Media      | 2         | [Preview](./mobile-media/2/transparant.png)   |[State Diagram](./mobile-media/2/diagram.xml)           | [Analyzer Report](./mobile-media/2/report.txt)           |
+| Mobile Media      | 3         | [Preview](./mobile-media/3/transparant.png)   |[State Diagram](./mobile-media/3/diagram.xml)           | [Analyzer Report](./mobile-media/3/report.txt)           |
+| Mobile Media      | 4         | [Preview](./mobile-media/4/transparant.png)   |[State Diagram](./mobile-media/4/diagram.xml)           | [Analyzer Report](./mobile-media/4/report.txt)           |
+| Mobile Media      | 5         | [Preview](./mobile-media/5/transparant.png)   |[State Diagram](./mobile-media/5/diagram.xml)           | [Analyzer Report](./mobile-media/5/report.txt)           |
+| Mobile Media      | 6         | [Preview](./mobile-media/6/transparant.png)   |[State Diagram](./mobile-media/6/diagram.xml)           | [Analyzer Report](./mobile-media/6/report.txt)           |
+| Mobile Media      | 7         | [Preview](./mobile-media/7/transparant.png)   |[State Diagram](./mobile-media/7/diagram.xml)           | [Analyzer Report](./mobile-media/7/report.txt)           |
+| Mobile Media      | 8         | [Preview](./mobile-media/8/transparant.png)   |[State Diagram](./mobile-media/8/diagram.xml)           | [Analyzer Report](./mobile-media/8/report.txt)           |
