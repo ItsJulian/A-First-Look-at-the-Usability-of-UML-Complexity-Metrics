@@ -48,4 +48,4 @@ Below you will find the contact information of the researchers and supervisor.
 
 | Julian Meurer | Sjoerd Plat | Joep Overmars | Tannaz Zameni |
 | --- | --- | --- | --- | 
-| julian@meurer.email <br> https://github.com/ItsJulian |  | https://github.com/Ilomiswir |  | 
+| julian@meurer.email <br> https://github.com/ItsJulian | sjoerd.plat@gmail <br> https://github.com/sjoerdp | https://github.com/Ilomiswir |  | 
