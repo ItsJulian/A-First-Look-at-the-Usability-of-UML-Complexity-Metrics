@@ -36,6 +36,13 @@ The metrics are calculated based on the formulas provided by the paper the metri
 
 [Click Here](./dataset/diagram-metrics/) to go to the diagram metrics.
 
+## Software Metrics
+This dataset also contains the calculated software metrics (as a CSV file) for both [Java Websockets](https://github.com/TooTallNate/Java-WebSocket) and [Mobile Media](https://github.com/julioserafim/MobileMedia). 
+
+The metrics are calculated by well-researched and widely used tools like [SonarQube](https://www.sonarsource.com/products/sonarqube/) and [JArchitect](https://www.jarchitect.com/).
+
+[Click Here](./dataset/software-metrics/) to go to the software metrics.
+
 # Contact
 Below you will find the contact information of the researchers and supervisor.
 
